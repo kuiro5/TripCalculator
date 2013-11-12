@@ -88,16 +88,9 @@
                         <viewControllerLayoutGuide type="top" id="xe9-uV-LXz"/>
                         <viewControllerLayoutGuide type="bottom" id="xvW-pN-lsJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nJs-GL-7Q1">
+                    <view key="view" contentMode="scaleToFill" id="nJs-GL-7Q1" customClass="GMSMapView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-Gz-48X" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="RiT-VE-BXR">
@@ -108,7 +101,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="kAh-Gz-48X" id="04G-Lv-fVO"/>
+                        <outlet property="mapView" destination="nJs-GL-7Q1" id="V0K-Xk-ntu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PzF-YM-UMf" userLabel="First Responder" sceneMemberID="firstResponder"/>

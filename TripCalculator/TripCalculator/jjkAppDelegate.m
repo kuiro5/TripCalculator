@@ -16,7 +16,7 @@
     // Override point for customization after application launch.
     
     
-    [GMSServices provideAPIKey:@"AIzaSyD-vqO7_HUkJrFrh5Y-SB1oyoLelq0hnQs"];
+    [GMSServices provideAPIKey:@"AIzaSyCEXuRJB7y80NqS7ClDVlHEM1ONChclfek"];
     
     
     return YES;
