@@ -10,4 +10,9 @@
 
 @interface jjkMapViewController : UIViewController
 
+@property(strong,nonatomic)NSString *starting;
+@property(strong,nonatomic)NSString *destination;
+@property(strong,nonatomic)NSString *budget;
+
+
 @end

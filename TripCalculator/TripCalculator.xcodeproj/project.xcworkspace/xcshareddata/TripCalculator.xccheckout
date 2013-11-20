@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C70B7244-E1C5-4663-B3CD-E238D5294A4E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TripCalculator</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5211C0AD-EE92-48B8-89BC-5AF617C82093</key>
+		<string>https://github.com/kuiro5/TripCalculator.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TripCalculator/TripCalculator.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5211C0AD-EE92-48B8-89BC-5AF617C82093</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kuiro5/TripCalculator.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5211C0AD-EE92-48B8-89BC-5AF617C82093</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5211C0AD-EE92-48B8-89BC-5AF617C82093</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TripCalculator</string>
+		</dict>
+	</array>
+</dict>
+</plist>

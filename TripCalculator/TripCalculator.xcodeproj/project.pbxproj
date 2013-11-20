@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0EAE05183D28C70057D871 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B0EAE04183D28C70057D871 /* GoogleMaps.bundle */; };
+		7B0EAE08183D40380057D871 /* jjkMapServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0EAE07183D40380057D871 /* jjkMapServices.m */; };
 		7B40E0451832CE38008AAAB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0441832CE38008AAAB9 /* Foundation.framework */; };
 		7B40E0471832CE38008AAAB9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0461832CE38008AAAB9 /* CoreGraphics.framework */; };
 		7B40E0491832CE38008AAAB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0481832CE38008AAAB9 /* UIKit.framework */; };
@@ -51,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B0EAE04183D28C70057D871 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.5.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		7B0EAE06183D40380057D871 /* jjkMapServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkMapServices.h; sourceTree = "<group>"; };
+		7B0EAE07183D40380057D871 /* jjkMapServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkMapServices.m; sourceTree = "<group>"; };
 		7B40E0411832CE38008AAAB9 /* TripCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B40E0441832CE38008AAAB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B40E0461832CE38008AAAB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,6 +156,7 @@
 		7B40E0431832CE38008AAAB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B0EAE04183D28C70057D871 /* GoogleMaps.bundle */,
 				7B40E0A31832E42B008AAAB9 /* CoreData.framework */,
 				7B40E0A11832E305008AAAB9 /* GoogleMaps.framework */,
 				7B40E09F1832E195008AAAB9 /* SystemConfiguration.framework */,
@@ -177,6 +183,10 @@
 		7B40E04A1832CE38008AAAB9 /* TripCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				7B0EAE06183D40380057D871 /* jjkMapServices.h */,
+				7B0EAE07183D40380057D871 /* jjkMapServices.m */,
+				7B40E07B1832D345008AAAB9 /* jjkMapViewController.h */,
+				7B40E07C1832D345008AAAB9 /* jjkMapViewController.m */,
 				7B40E0531832CE38008AAAB9 /* jjkAppDelegate.h */,
 				7B40E0541832CE38008AAAB9 /* jjkAppDelegate.m */,
 				7B40E0561832CE38008AAAB9 /* Main.storyboard */,
@@ -184,8 +194,6 @@
 				7B40E05A1832CE38008AAAB9 /* jjkViewController.m */,
 				7B40E05C1832CE38008AAAB9 /* Images.xcassets */,
 				7B40E04B1832CE38008AAAB9 /* Supporting Files */,
-				7B40E07B1832D345008AAAB9 /* jjkMapViewController.h */,
-				7B40E07C1832D345008AAAB9 /* jjkMapViewController.m */,
 			);
 			path = TripCalculator;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B40E06E1832CE39008AAAB9 /* InfoPlist.strings in Resources */,
+				7B0EAE05183D28C70057D871 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +332,7 @@
 			files = (
 				7B40E05B1832CE38008AAAB9 /* jjkViewController.m in Sources */,
 				7B40E07D1832D345008AAAB9 /* jjkMapViewController.m in Sources */,
+				7B0EAE08183D40380057D871 /* jjkMapServices.m in Sources */,
 				7B40E0551832CE38008AAAB9 /* jjkAppDelegate.m in Sources */,
 				7B40E0511832CE38008AAAB9 /* main.m in Sources */,
 			);
@@ -547,6 +557,7 @@
 				7B40E0751832CE39008AAAB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B40E0761832CE39008AAAB9 /* Build configuration list for PBXNativeTarget "TripCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -555,6 +566,7 @@
 				7B40E0781832CE39008AAAB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
