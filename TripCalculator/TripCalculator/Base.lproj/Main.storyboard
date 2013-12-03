@@ -70,7 +70,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-pk-R8W">
-                                        <rect key="frame" x="128" y="351" width="65" height="30"/>
+                                        <rect key="frame" x="108" y="354" width="65" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
                                         <state key="normal" title="Calculate">
@@ -78,7 +78,7 @@
                                         </state>
                                         <connections>
                                             <action selector="calculatePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0GU-Em-cEr"/>
-                                            <segue destination="qCA-oI-dpj" kind="push" id="RfL-Tw-6Sd"/>
+                                            <segue destination="YUW-yr-fQJ" kind="push" id="Qrs-sA-aB5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -99,32 +99,41 @@
             <point key="canvasLocation" x="-464" y="-99"/>
         </scene>
         <!--Jjk Map View Controller-->
-        <scene sceneID="KTO-Pi-KSB">
+        <scene sceneID="k7M-Nb-V8c">
             <objects>
-                <viewController id="qCA-oI-dpj" customClass="jjkMapViewController" sceneMemberID="viewController">
+                <viewController id="YUW-yr-fQJ" customClass="jjkMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xe9-uV-LXz"/>
-                        <viewControllerLayoutGuide type="bottom" id="xvW-pN-lsJ"/>
+                        <viewControllerLayoutGuide type="top" id="A2b-v9-xSI"/>
+                        <viewControllerLayoutGuide type="bottom" id="fRd-Dl-qWo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nJs-GL-7Q1" customClass="GMSMapView">
+                    <view key="view" contentMode="scaleToFill" id="rAg-wO-0tm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cn9-Pl-dmr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YUW-yr-fQJ" id="2IM-Ek-W62"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RiT-VE-BXR">
-                        <barButtonItem key="rightBarButtonItem" title="Directions" id="cNd-9d-2Cm">
+                    <navigationItem key="navigationItem" id="0uA-hY-qNA">
+                        <barButtonItem key="rightBarButtonItem" title="Directions" id="NgW-0d-Bgi">
                             <connections>
-                                <segue destination="83F-Hw-kxG" kind="push" id="TAe-xr-rs0"/>
+                                <segue destination="83F-Hw-kxG" kind="push" id="gJE-NO-KJp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="nJs-GL-7Q1" id="V0K-Xk-ntu"/>
+                        <outlet property="mapView" destination="cn9-Pl-dmr" id="l2s-Uu-jnr"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PzF-YM-UMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKp-dM-Nat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="-73"/>
+            <point key="canvasLocation" x="-8" y="-78"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="boC-mD-vwk">

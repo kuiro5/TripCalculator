@@ -7,20 +7,15 @@
 //
 
 #import "jjkMapViewController.h"
-#import "jjkMapServices.h"
-#import <GoogleMaps/GoogleMaps.h>
 
 @interface jjkMapViewController ()
-@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
-@property (strong, nonatomic) NSDictionary *geocodeStarting;
-@property (strong, nonatomic) NSDictionary *geocodeDestination;
-@property (strong, nonatomic) NSDictionary *temporaryDictionary;
-@property (strong,nonatomic) NSData *data;
-@property (strong,nonatomic) NSMutableArray *waypoints;
-@property (strong,nonatomic) NSMutableArray *waypointStrings;
-@end
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLGeocoder *geocoder;
+@property CLLocationCoordinate2D startingLocation;
+@property CLLocationCoordinate2D destinationLocation;
+//@property CLLocationCoordinate2D coordinate;
 
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+@end
 
 @implementation jjkMapViewController
 
@@ -28,152 +23,89 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-         self.geocodeStarting = [[NSDictionary alloc]initWithObjectsAndKeys:@"0.0",@"lat",@"0.0",@"lng",@"Null Island",@"address",nil];
-        self.geocodeDestination = [[NSDictionary alloc]initWithObjectsAndKeys:@"0.0",@"lat",@"0.0",@"lng",@"Null Island",@"address",nil];
+        self.mapView.showsUserLocation = YES;
+        //self.coordinate = CLLocationCoordinate2DMake(0.0, 0.0);
     }
     return self;
 }
 
-- (NSDictionary*)geocodeAddress:(NSString *)address{
-    NSString *geocodingBaseUrl = @"http://maps.googleapis.com/maps/api/geocode/json?";
-    NSString *url = [NSString stringWithFormat:@"%@address=%@&sensor=false", geocodingBaseUrl,address];
-    url = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+-(CLLocationCoordinate2D)geocodeAddress:(NSString*)address
+{
+    if (!self.geocoder) {
+        self.geocoder = [[CLGeocoder alloc] init];
+    }
     
-    NSURL *queryUrl = [NSURL URLWithString:url];
-    dispatch_sync(kBgQueue, ^{
-        
-        NSData *data = [NSData dataWithContentsOfURL: queryUrl];
-        
-       self.temporaryDictionary = [self fetchedData:data];
-        
-    });
+    __block CLLocationCoordinate2D coordinate;
     
-    return self.temporaryDictionary;
+    [self.geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if ([placemarks count] > 0)
+        {
+            NSLog(@"inside placemark count");
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            CLLocation *location = placemark.location;
+            coordinate = location.coordinate;
+            NSLog(@"latitude %f", coordinate.latitude);
+            NSLog(@"longitude %f", coordinate.longitude);
+            [self updateMapView:coordinate];
+//            self.coordinatesLabel.text = [NSString stringWithFormat:@"%f, %f", coordinate.latitude, coordinate.longitude];
+            if ([placemark.areasOfInterest count] > 0)
+            {
+                //NSString *areaOfInterest = [placemark.areasOfInterest objectAtIndex:0];
+                //self.nameLabel.text = areaOfInterest;
+                NSLog(@"found");
+            }
+            else
+            {
+                NSLog(@"error");
+            }
+        }
+    }];
+    
+    
+    return coordinate;
     
 }
 
-- (NSDictionary*)fetchedData:(NSData *)data{
-    
-    NSError* error;
-    NSDictionary *json = [NSJSONSerialization
-                          JSONObjectWithData:data
-                          options:kNilOptions
-                          error:&error];
-    
-    NSArray* results = [json objectForKey:@"results"];
-    NSDictionary *result = [results objectAtIndex:0];
-    NSString *address = [result objectForKey:@"formatted_address"];
-    NSDictionary *geometry = [result objectForKey:@"geometry"];
-    NSDictionary *location = [geometry objectForKey:@"location"];
-    NSString *lat = [location objectForKey:@"lat"];
-    NSString *lng = [location objectForKey:@"lng"];
-    
-    NSDictionary *gc = [[NSDictionary alloc]initWithObjectsAndKeys:lat,@"lat",lng,@"lng",address,@"address",nil];
-    
-    return gc;
-    
-}
+
 
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // Create a GMSCameraPosition that tells the map to display the
-    // coordinate -33.86,151.20 at zoom level 6.
-    self.geocodeStarting = [self geocodeAddress:self.starting];
-    self.geocodeDestination = [self geocodeAddress:self.destination];
-    //[self geocodeAddress:self.destination withDictionary:self.geocodeDestination];
+     self.startingLocation = [self geocodeAddress:self.starting];
     
-    NSString *latitudeStart = [self.geocodeStarting objectForKey:@"lat"];
-    NSString *longitudeStart = [self.geocodeStarting objectForKey:@"lng"];
-    NSString *addressStart = [self.geocodeStarting objectForKey:@"address"];
-    
-    CLLocationDegrees latitude = [latitudeStart doubleValue];
-    CLLocationDegrees longitude = [longitudeStart doubleValue];
-    
-    NSString *latitudeStop = [self.geocodeDestination objectForKey:@"lat"];
-    NSString *longitudeStop = [self.geocodeDestination objectForKey:@"lng"];
-    NSString *addressStop = [self.geocodeDestination objectForKey:@"address"];
-    
-    CLLocationDegrees latitudeStopDegrees = [latitudeStop doubleValue];
-    CLLocationDegrees longitudeStopDegrees = [longitudeStop doubleValue];
-    
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
-                                                            longitude:longitude
-                                                                 zoom:15];
-    
-    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    self.mapView.myLocationEnabled = YES;
-    self.view = self.mapView;
-    
-    // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(latitude, longitude);
-    marker.title = addressStart;
-    marker.map = self.mapView;
-    
-    GMSMarker *markerStop = [[GMSMarker alloc] init];
-    markerStop.position = CLLocationCoordinate2DMake(latitudeStopDegrees, longitudeStopDegrees);
-    markerStop.title = addressStop;
-    markerStop.map = self.mapView;
-    
-    
-    
+     self.destinationLocation = [self geocodeAddress:self.destination];
     
 }
 
+- (void) updateMapView:(CLLocationCoordinate2D)currentCoordinate
+{
+    
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentCoordinate, 800, 800);
+    [self.mapView setRegion:region];
+    
+    //[self.mapView removeAnnotations:[self.mapView annotations]];
+    
+    MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
+    [startAnnotation setCoordinate:currentCoordinate];
+    [startAnnotation setTitle:self.starting];
+    [startAnnotation setSubtitle:[NSString stringWithFormat:@"%f, %f", currentCoordinate.longitude, currentCoordinate.latitude]];
+    [self.mapView addAnnotation:startAnnotation];
+}
 
-//- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-//{
-//    NSLog(@"gettin called!");
-//    
-//    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(
-//                                                                 coordinate.latitude,
-//                                                                 coordinate.longitude);
-//    GMSMarker *marker = [GMSMarker markerWithPosition:position];
-//    marker.map = self.mapView;
-//    [self.waypoints addObject:marker];
-//    NSString *positionString = [[NSString alloc] initWithFormat:@"%f,%f",
-//                                coordinate.latitude,coordinate.longitude];
-//    [self.waypointStrings addObject:positionString];
-//    if([self.waypoints count]>1){
-//        NSString *sensor = @"false";
-//        NSArray *parameters = [NSArray arrayWithObjects:sensor, self.waypointStrings,
-//                               nil];
-//        NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
-//        NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
-//                                                          forKeys:keys];
-//        jjkMapServices *mds=[[jjkMapServices alloc] init];
-//        SEL selector = @selector(addDirections:);
-//        [mds setDirectionsQuery:query
-//                   withSelector:selector
-//                   withDelegate:self];
-//    }
-//}
-//
-//
-//
-//
-//- (void)addDirections:(NSDictionary *)json {
-//    
-//    NSDictionary *routes = [json objectForKey:@"routes"][0];
-//    
-//    NSDictionary *route = [routes objectForKey:@"overview_polyline"];
-//    NSString *overview_route = [route objectForKey:@"points"];
-//    GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
-//    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-//    polyline.map = self.mapView;
-//}
+
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+
 }
 
 @end

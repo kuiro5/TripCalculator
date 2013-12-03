@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <AddressBook/AddressBook.h>
 
-@interface jjkMapViewController : UIViewController
+
+@interface jjkMapViewController : UIViewController<MKMapViewDelegate>
 
 @property(strong,nonatomic)NSString *starting;
 @property(strong,nonatomic)NSString *destination;
