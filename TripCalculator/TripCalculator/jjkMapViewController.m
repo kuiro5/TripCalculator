@@ -29,11 +29,12 @@
     return self;
 }
 
--(CLLocationCoordinate2D)geocodeAddress:(NSString*)address
+-(void)geocodeAddress:(NSMutableArray*)locations
 {
-    if (!self.geocoder) {
-        self.geocoder = [[CLGeocoder alloc] init];
-    }
+    for(NSString *address in locations)
+    {
+    
+    self.geocoder = [[CLGeocoder alloc] init];
     
     __block CLLocationCoordinate2D coordinate;
     
@@ -46,7 +47,7 @@
             coordinate = location.coordinate;
             NSLog(@"latitude %f", coordinate.latitude);
             NSLog(@"longitude %f", coordinate.longitude);
-            [self updateMapView:coordinate];
+            [self updateMapView:coordinate withName:address];
 //            self.coordinatesLabel.text = [NSString stringWithFormat:@"%f, %f", coordinate.latitude, coordinate.longitude];
             if ([placemark.areasOfInterest count] > 0)
             {
@@ -62,7 +63,7 @@
     }];
     
     
-    return coordinate;
+    }
     
 }
 
@@ -75,13 +76,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-     self.startingLocation = [self geocodeAddress:self.starting];
+    NSMutableArray *locations = [[NSMutableArray alloc]initWithObjects:self.starting, self.destination, nil];
     
-     self.destinationLocation = [self geocodeAddress:self.destination];
+    [self geocodeAddress:locations];
     
 }
 
-- (void) updateMapView:(CLLocationCoordinate2D)currentCoordinate
+- (void) updateMapView:(CLLocationCoordinate2D)currentCoordinate withName:(NSString*)name
 {
     
     
@@ -92,7 +93,7 @@
     
     MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
     [startAnnotation setCoordinate:currentCoordinate];
-    [startAnnotation setTitle:self.starting];
+    [startAnnotation setTitle:name];
     [startAnnotation setSubtitle:[NSString stringWithFormat:@"%f, %f", currentCoordinate.longitude, currentCoordinate.latitude]];
     [self.mapView addAnnotation:startAnnotation];
 }
