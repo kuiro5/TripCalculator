@@ -3,14 +3,20 @@ TripCalculator
 
 Final Project for iOS Course
 
-To Do (November 12, 2013):<br>
--Google Maps API<br>
--Slide Segue<br>
+To Do (December 3, 2013):<br>
+-~~MapKit~~<br>
+-Table View-Turn by Turn Direction <br>
+-Adding Cost Functionality
+-~~Slide Segue~~<br>
 -Core Data<br>
 -Graph API<br>
 <br>
-By Monday November 18, 2013:<br>
--Google Directions Implemented<br>
-  -Completion Block (starting, destination, target budget)<br>
-  -TableView Delegate<br>
+Week Goal (Sunday, December 8, 2013):<br>
+-Table View Turn by Turn Directions<br>
+  -Cost Functionality
+-Core Data to save past searches
+-Graph API displaying cost information
+-Better auto zoom functionality on map
+-Label multiple routes
+
 
