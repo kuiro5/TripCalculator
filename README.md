@@ -6,7 +6,7 @@ Final Project for iOS Course
 To Do (December 3, 2013):<br>
 -~~MapKit~~<br>
 -Table View-Turn by Turn Direction <br>
--Adding Cost Functionality
+-Adding Cost Functionality<br>
 -~~Slide Segue~~<br>
 -Core Data<br>
 -Graph API<br>
