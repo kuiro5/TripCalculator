@@ -18,6 +18,13 @@
 @end
 
 @implementation jjkMapViewController
+@synthesize mapView;
+@synthesize geocoder;
+@synthesize startingLocation;
+@synthesize destinationLocation;
+@synthesize starting;
+@synthesize destination;
+@synthesize budget;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,6 +86,10 @@
     NSMutableArray *locations = [[NSMutableArray alloc]initWithObjects:self.starting, self.destination, nil];
     
     [self geocodeAddress:locations];
+
+}
+
+- (void)handleViewsSwipe:(UISwipeGestureRecognizer *)gesture{
     
 }
 

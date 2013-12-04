@@ -9,6 +9,7 @@
 #import "jjkAppDelegate.h"
 
 @implementation jjkAppDelegate
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

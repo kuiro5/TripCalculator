@@ -21,6 +21,12 @@
 @end
 
 @implementation jjkViewController
+@synthesize scrollView;
+@synthesize imageView;
+@synthesize startingTextField;
+@synthesize destinationTextField;
+@synthesize budgetTextField;
+
 
 - (void)viewDidLoad
 {
@@ -30,8 +36,15 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.scrollView.userInteractionEnabled = YES;
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(screenSwiped:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [scrollView addGestureRecognizer:swipe];
+
 }
 
+- (void)screenSwiped:(UISwipeGestureRecognizer *)sender{
+    [self calculatePressed:sender];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,6 +54,7 @@
 
 - (IBAction)calculatePressed:(id)sender
 {
+    
     
 }
 
