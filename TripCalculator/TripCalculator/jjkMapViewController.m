@@ -7,6 +7,7 @@
 //
 
 #import "jjkMapViewController.h"
+#import "jjkResultsTableViewController.h"
 
 @interface jjkMapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -15,6 +16,7 @@
 @property CLLocationCoordinate2D destinationLocation;
 @property (strong, nonatomic) NSMutableArray *geocodedAddresses;
 @property (strong, nonatomic) NSMutableArray *routePoints;
+@property (strong, nonatomic) MKDirectionsResponse *route;
 
 @end
 
@@ -24,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"check");
+        //NSLog(@"check");
         self.mapView.showsUserLocation = YES;
         
     }
@@ -34,7 +36,7 @@
 -(void)putObject:(MKMapItem*)mapItem
 {
    
-    NSLog(@"inside put object");
+    //NSLog(@"inside put object");
     [self.geocodedAddresses addObject:mapItem];
 }
 
@@ -57,7 +59,7 @@
         
         if ([placemarks count] > 0)
         {
-            NSLog(@"inside placemark count");
+            //NSLog(@"inside placemark count");
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             CLLocation *location = placemark.location;
             coordinate = location.coordinate;
@@ -74,7 +76,7 @@
         }
         
         
-        NSLog(@"%d",i);
+        //NSLog(@"%d",i);
         
         if(i == 2)
         {
@@ -123,7 +125,7 @@
 
 -(void)calculateDirections:(NSMutableArray*)addresses
 {
-    NSLog(@"getting called");
+    //NSLog(@"getting called");
     
     MKMapItem *temporary =[addresses objectAtIndex:0];
     
@@ -152,6 +154,8 @@
 
 -(void)showRoute:(MKDirectionsResponse *)response
 {
+    self.route = response;
+    
     for (MKRoute *route in response.routes)
     {
         [self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
@@ -197,8 +201,16 @@
     MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
     [startAnnotation setCoordinate:currentCoordinate];
     [startAnnotation setTitle:name];
-    [startAnnotation setSubtitle:[NSString stringWithFormat:@"%f, %f", currentCoordinate.longitude, currentCoordinate.latitude]];
+    MKRoute *temporary = [self.route.routes objectAtIndex:0];
+    [startAnnotation setSubtitle:[NSString stringWithFormat:@"%.02f", temporary.expectedTravelTime]];
     [self.mapView addAnnotation:startAnnotation];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //NSLog(@"preparing for segue!");
+    jjkResultsTableViewController *resultsTableView = segue.destinationViewController;
+    resultsTableView.route = self.route;
 }
 
 
