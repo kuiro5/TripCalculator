@@ -17,10 +17,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *budgetTextField;
 - (IBAction)calculatePressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 
 @end
 
 @implementation jjkViewController
+@synthesize calculateButton;
 @synthesize scrollView;
 @synthesize imageView;
 @synthesize startingTextField;
@@ -54,8 +56,7 @@
 
 - (IBAction)calculatePressed:(id)sender
 {
-    
-    
+
 }
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
@@ -81,23 +82,35 @@
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-//   if(self.startingTextField.text.length == 0 || self.destinationTextField.text.length == 0){
-//        return NO;
-//    
-//    }
-//    else
-//    {
+    if([self.startingTextField.text length] == 0 || [self.startingTextField.text length] == 0){
+        return NO;
+        
+    }
+   if(self.startingTextField.text.length == 0 || self.destinationTextField.text.length == 0){
+        return NO;
+    
+    }
+    else
+    {
         return YES;
-//    }
+    }
 }
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //NSLog(@"preparing for segue!");
+    //NSLog(@"preparing for segue!")
+    jjkCostViewController *costViewController;
+    costViewController.budgetValue = self.budgetTextField.text;
+    
         jjkMapViewController *mapViewController = segue.destinationViewController;
         mapViewController.starting = self.startingTextField.text;
         mapViewController.destination = self.destinationTextField.text;
-        mapViewController.budget = self.budgetTextField.text;
+       // mapViewController.budget = self.budgetTextField.text;
+    
+}
+- (void)viewDidUnload {
+    [self setCalculateButton:nil];
+    [super viewDidUnload];
 }
 @end

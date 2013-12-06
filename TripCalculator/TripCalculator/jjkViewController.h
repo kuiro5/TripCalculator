@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "jjkCostViewController.h"
 
 @interface jjkViewController : UIViewController
 
