@@ -32,6 +32,8 @@
 		7B42B1D118514B6D0037C5FE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42B1D018514B6D0037C5FE /* Accelerate.framework */; };
 		7B8D0168184D833200FE2337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B40E0561832CE38008AAAB9 /* Main.storyboard */; };
 		7B8D0169184D86DC00FE2337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0861832DBE4008AAAB9 /* MapKit.framework */; };
+		7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C92185636990009C0CD /* jjkCostViewController.m */; };
+		7BAA5C961856539C0009C0CD /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C951856539C0009C0CD /* Model.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +159,10 @@
 		7B42B1CC1851489B0037C5FE /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		7B42B1CE185148FF0037C5FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7B42B1D018514B6D0037C5FE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7BAA5C91185636990009C0CD /* jjkCostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCostViewController.h; sourceTree = "<group>"; };
+		7BAA5C92185636990009C0CD /* jjkCostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCostViewController.m; sourceTree = "<group>"; };
+		7BAA5C941856539C0009C0CD /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7BAA5C951856539C0009C0CD /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +370,8 @@
 		7B8D0166184D7BC700FE2337 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7BAA5C941856539C0009C0CD /* Model.h */,
+				7BAA5C951856539C0009C0CD /* Model.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -383,6 +391,8 @@
 				7B42B17818513A590037C5FE /* jjkResultsCell.m */,
 				7B42B17A185145CA0037C5FE /* jjkGraphViewController.h */,
 				7B42B17B185145CA0037C5FE /* jjkGraphViewController.m */,
+				7BAA5C91185636990009C0CD /* jjkCostViewController.h */,
+				7BAA5C92185636990009C0CD /* jjkCostViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -487,7 +497,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B40E05B1832CE38008AAAB9 /* jjkViewController.m in Sources */,
+				7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */,
 				7B42B1731851293F0037C5FE /* jjkResultsTableViewController.m in Sources */,
+				7BAA5C961856539C0009C0CD /* Model.m in Sources */,
 				7B40E07D1832D345008AAAB9 /* jjkMapViewController.m in Sources */,
 				7B40E0551832CE38008AAAB9 /* jjkAppDelegate.m in Sources */,
 				7B42B17C185145CA0037C5FE /* jjkGraphViewController.m in Sources */,

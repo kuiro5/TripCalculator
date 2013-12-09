@@ -44,7 +44,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Starting" minimumFontSize="17" id="5u3-Ws-Bap">
-                                        <rect key="frame" x="57" y="204" width="206" height="30"/>
+                                        <rect key="frame" x="57" y="244" width="206" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -52,8 +52,17 @@
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="7Ga-AU-MdW"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trip Name" minimumFontSize="17" id="7Zg-B0-MPp">
+                                        <rect key="frame" x="57" y="206" width="206" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="P3a-tX-AXD"/>
+                                        </connections>
+                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" minimumFontSize="17" id="1Oj-o4-Cja">
-                                        <rect key="frame" x="57" y="247" width="206" height="30"/>
+                                        <rect key="frame" x="57" y="287" width="206" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -62,7 +71,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Target Budget" minimumFontSize="17" id="Kbu-BE-CTI">
-                                        <rect key="frame" x="57" y="297" width="206" height="30"/>
+                                        <rect key="frame" x="57" y="403" width="206" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -70,16 +79,38 @@
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="Fzw-at-Xun"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Target Time" minimumFontSize="17" id="GwE-rG-4nk">
+                                        <rect key="frame" x="57" y="365" width="206" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="z5h-w1-Kke"/>
+                                        </connections>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dyc-pk-R8W">
-                                        <rect key="frame" x="108" y="354" width="65" height="30"/>
+                                        <rect key="frame" x="74" y="441" width="65" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
-                                        <state key="normal" title="Calculate">
+                                        <state key="normal" title="New Trip">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="calculatePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0GU-Em-cEr"/>
-                                            <segue destination="YUW-yr-fQJ" kind="push" id="Qrs-sA-aB5"/>
+                                            <segue destination="YUW-yr-fQJ" kind="push" identifier="DirectionSegue" id="Qrs-sA-aB5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W1V-0j-EUe">
+                                        <rect key="frame" x="147" y="441" width="99" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                        <state key="normal" title="Current Trip">
+                                            <color key="titleColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="calculatePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Gru-a8-OPQ"/>
+                                            <segue destination="4Ox-Vg-ojf" kind="push" identifier="CurrentTripSegue" id="RN3-yc-oFY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -97,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-464" y="-99"/>
+            <point key="canvasLocation" x="-480" y="-99"/>
         </scene>
         <!--Jjk Map View Controller-->
         <scene sceneID="k7M-Nb-V8c">
@@ -218,11 +249,113 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cep-Kr-RQd"/>
+                    <navigationItem key="navigationItem" id="cep-Kr-RQd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2eP-dU-7bG">
+                            <connections>
+                                <segue destination="JLr-y3-Wgk" kind="push" id="t2I-TU-NpL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRn-2n-pzo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="-37"/>
+            <point key="canvasLocation" x="985" y="-78"/>
+        </scene>
+        <!--Jjk Cost View Controller-->
+        <scene sceneID="864-W8-wL1">
+            <objects>
+                <viewController id="JLr-y3-Wgk" customClass="jjkCostViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7jr-Ge-G0l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2qE-Vm-Yro">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitude" textAlignment="center" minimumFontSize="17" id="2Fx-7C-1up">
+                                        <rect key="frame" x="162" y="223" width="132" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JLr-y3-Wgk" id="1nP-Lb-GkS"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude" textAlignment="center" minimumFontSize="17" id="edR-sP-Iqh">
+                                        <rect key="frame" x="20" y="223" width="130" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JLr-y3-Wgk" id="JNe-yf-IRD"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$" textAlignment="center" minimumFontSize="17" id="LnQ-yJ-wbg">
+                                        <rect key="frame" x="20" y="147" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JLr-y3-Wgk" id="dCV-jd-1Pr"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description (optional)" textAlignment="center" minimumFontSize="17" id="oJ2-Nt-gAl">
+                                        <rect key="frame" x="20" y="185" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JLr-y3-Wgk" id="e1L-FP-A0b"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type of Cost" textAlignment="center" minimumFontSize="17" id="HoA-I6-tWR">
+                                        <rect key="frame" x="20" y="109" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JLr-y3-Wgk" id="poG-CQ-jWb"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VfY-wt-NdQ">
+                                        <rect key="frame" x="62" y="261" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="JLr-y3-Wgk" eventType="touchUpInside" id="hLv-CX-zZM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gzX-ak-ffb">
+                                        <rect key="frame" x="189" y="261" width="65" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="JLr-y3-Wgk" eventType="touchUpInside" id="tcQ-mB-cja"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8lx-Ol-K8l"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="oJ2-Nt-gAl" id="MDf-L0-gef"/>
+                        <outlet property="latitudeTextField" destination="edR-sP-Iqh" id="cnT-WG-I6d"/>
+                        <outlet property="longitudeTextField" destination="2Fx-7C-1up" id="xc8-VZ-XSa"/>
+                        <outlet property="moneyTextField" destination="LnQ-yJ-wbg" id="YRh-3b-QGC"/>
+                        <outlet property="scrollView" destination="2qE-Vm-Yro" id="97C-14-ZS6"/>
+                        <outlet property="typeOfCostTextField" destination="HoA-I6-tWR" id="yif-49-Re7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiN-F2-UFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="-78"/>
         </scene>
     </scenes>
     <resources>
@@ -233,4 +366,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="RN3-yc-oFY"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -80,10 +80,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //NSLog(@"preparing for segue!");
-        jjkMapViewController *mapViewController = segue.destinationViewController;
-        mapViewController.starting = self.startingTextField.text;
-        mapViewController.destination = self.destinationTextField.text;
-        mapViewController.budget = self.budgetTextField.text;
+        if([segue.identifier isEqual: @"DirectionSegue"])
+        {
+            jjkMapViewController *mapViewController = segue.destinationViewController;
+            mapViewController.starting = self.startingTextField.text;
+            mapViewController.destination = self.destinationTextField.text;
+            mapViewController.budget = self.budgetTextField.text;
+
+        }
 }
 @end
