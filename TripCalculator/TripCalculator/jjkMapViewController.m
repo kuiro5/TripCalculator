@@ -25,7 +25,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _model = [[Model alloc] init];
+        _model = [Model sharedInstance];
     }
     return self;
 }
@@ -176,8 +176,15 @@
     for(int i = 0; i < [currentCosts count]; i++)
     {
         NSDictionary* costAdded = [currentCosts objectAtIndex:i];
-        CLLocationDegrees latitude = [[costAdded objectForKey:@"latitude"] doubleValue];
-        CLLocationDegrees longitude = [[costAdded objectForKey:@"longitude"] doubleValue];
+        CLLocationDegrees latitude = self.mapView.centerCoordinate.latitude;
+        CLLocationDegrees longitude = self.mapView.centerCoordinate.longitude;
+        
+        latitude = latitude + (i*.01);
+        longitude = longitude + (i*.01);
+
+        CLLocationCoordinate2D costCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        
+        
         NSString *type = [costAdded objectForKey:@"cost type"];
         NSString *cost = [costAdded objectForKey:@"money cost"];
         
@@ -185,7 +192,7 @@
         
         
         MKPointAnnotation *newCostAnnotation = [[MKPointAnnotation alloc] init];
-        [newCostAnnotation setCoordinate:self.mapView.centerCoordinate];
+        [newCostAnnotation setCoordinate:costCoordinate];
         [newCostAnnotation setTitle:type];
         [newCostAnnotation setSubtitle:cost];
         [self.mapView addAnnotation:newCostAnnotation];
@@ -217,7 +224,7 @@
     
     [self geocodeAddress:locations];
     
-    //[self addCostsToMap];
+    [self addCostsToMap];
     
 }
 

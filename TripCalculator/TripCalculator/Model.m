@@ -23,6 +23,7 @@
     return singleton;
 }
 
+// override
 -(id) init
 {
     self = [super init];

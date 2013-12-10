@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
+#import "Model.h"
 
-@interface jjkGraphViewController : UIViewController
-
+@interface jjkGraphViewController : UIViewController <CPTPlotDataSource, UIActionSheetDelegate>
+@property (strong,nonatomic) Model *model;
 @end

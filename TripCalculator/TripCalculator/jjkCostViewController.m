@@ -32,7 +32,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _model = [[Model alloc] init];
+        _model = [Model sharedInstance];
         _mapView = [[jjkMapViewController alloc] init];
     }
     return self;
