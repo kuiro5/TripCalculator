@@ -41,12 +41,11 @@ To Do (December 10, 2013):<br>
 -fix uipickerview<br>
 -fix keyboard<br>
 -cancel should clear and dismiss view controller<br>
-
-
-
-
-
--Core Data to save past searches(maybe)<br>
+<br><br>
+Misc:
+-Add slide segues<br>
+-animations
+-Core Data to save past searches?<br>
 
 
 
