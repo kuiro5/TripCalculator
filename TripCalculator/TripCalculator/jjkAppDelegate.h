@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface jjkAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @end
+
+BOOL initialized;

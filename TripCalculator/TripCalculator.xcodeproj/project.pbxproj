@@ -27,6 +27,7 @@
 		7B8D0169184D86DC00FE2337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0861832DBE4008AAAB9 /* MapKit.framework */; };
 		C3021BB018512982004A8734 /* jjkCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3021BAF18512982004A8734 /* jjkCostViewController.m */; };
 		C31A930B184EB81A003334DE /* MainStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31A930A184EB81A003334DE /* MainStoryBoard.storyboard */; };
+		C3542DB7185657FB007B6B7C /* jjkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3542DB6185657FB007B6B7C /* jjkModel.m */; };
 		C379C55F184EC97600D94DE3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C379C55E184EC97600D94DE3 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		C3021BAE18512982004A8734 /* jjkCostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCostViewController.h; sourceTree = "<group>"; };
 		C3021BAF18512982004A8734 /* jjkCostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCostViewController.m; sourceTree = "<group>"; };
 		C31A930A184EB81A003334DE /* MainStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryBoard.storyboard; sourceTree = "<group>"; };
+		C3542DB5185657FB007B6B7C /* jjkModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkModel.h; sourceTree = "<group>"; };
+		C3542DB6185657FB007B6B7C /* jjkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkModel.m; sourceTree = "<group>"; };
 		C379C55E184EC97600D94DE3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -194,10 +197,12 @@
 			children = (
 				7B40E07C1832D345008AAAB9 /* jjkMapViewController.m */,
 				7B40E07B1832D345008AAAB9 /* jjkMapViewController.h */,
-				7B40E0531832CE38008AAAB9 /* jjkAppDelegate.h */,
 				7B40E0591832CE38008AAAB9 /* jjkViewController.h */,
 				C3021BAE18512982004A8734 /* jjkCostViewController.h */,
 				C3021BAF18512982004A8734 /* jjkCostViewController.m */,
+				C3542DB5185657FB007B6B7C /* jjkModel.h */,
+				C3542DB6185657FB007B6B7C /* jjkModel.m */,
+				7B40E0531832CE38008AAAB9 /* jjkAppDelegate.h */,
 				7B40E0541832CE38008AAAB9 /* jjkAppDelegate.m */,
 				7B40E05A1832CE38008AAAB9 /* jjkViewController.m */,
 				7B8D0165184D7BC200FE2337 /* Views */,
@@ -309,6 +314,7 @@
 				7B40E0551832CE38008AAAB9 /* jjkAppDelegate.m in Sources */,
 				7B40E0511832CE38008AAAB9 /* main.m in Sources */,
 				C3021BB018512982004A8734 /* jjkCostViewController.m in Sources */,
+				C3542DB7185657FB007B6B7C /* jjkModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

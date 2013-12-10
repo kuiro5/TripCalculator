@@ -56,12 +56,11 @@
 
 - (IBAction)calculatePressed:(id)sender
 {
-
+    startTimer = TRUE;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
-    NSLog(@"inside did begin editing");
     UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
     self.scrollView.contentInset = insets;
     
@@ -102,6 +101,8 @@
     //NSLog(@"preparing for segue!")
     jjkCostViewController *costViewController;
     costViewController.budgetValue = self.budgetTextField.text;
+    
+    
     
         jjkMapViewController *mapViewController = segue.destinationViewController;
         mapViewController.starting = self.startingTextField.text;

@@ -8,6 +8,7 @@
 
 #import "jjkAppDelegate.h"
 
+
 @implementation jjkAppDelegate
 @synthesize window;
 
@@ -15,6 +16,7 @@
 {
     // Override point for customization after application launch.
     
+    //[self.model startTimer];
     
     return YES;
 }

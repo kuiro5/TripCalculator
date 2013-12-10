@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *gasTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tollTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *grandTotalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 
 - (IBAction)calculateTotalsButton:(id)sender;
 
@@ -21,24 +22,38 @@
 @property (weak, nonatomic) IBOutlet UITextField *foodExpensesOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+
 @end
 
 @implementation jjkCostViewController
+@synthesize model;
 @synthesize budgetValue;
 @synthesize tollsExpensesOutlet;
 @synthesize gasExpensesOutlet;
 @synthesize foodExpensesOutlet;
 @synthesize scrollView;
 @synthesize foodTotalLabel;
+@synthesize tripTimer;
 @synthesize gasTotalLabel;
 @synthesize tollTotalLabel;
 @synthesize grandTotalLabel;
+@synthesize timerLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        
+    }
+    return self;
+}
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if(self){
+        self.model = [[jjkModel alloc] init];
+        
     }
     return self;
 }
@@ -46,28 +61,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self.model startTimer];
+    
+
+   // [self updateTimeDisplay];
+    
 	// Do any additional setup after loading the view.
+    if(self.tripTimer == nil)
+    {
+    
+        
+    }
+    
+    
+    if(startTimer)
+    {
+        [self.model startTimer];
+        startTimer = NO;
+    }
 }
 
-- (void)viewDidUnload
-{
+- (void) updateTimeDisplay {
+    
+    timerLabel.text = [self.model timeTraveled];
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.tripTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60) target:self selector:@selector(updateTimeDisplay) userInfo:nil repeats:YES];
+    
+}
 
-    [self setFoodTotalLabel:nil];
-    [self setGasTotalLabel:nil];
-    [self setTollTotalLabel:nil];
-    [self setTollsExpensesOutlet:nil];
-    [self setGasExpensesOutlet:nil];
-    [self setFoodExpensesOutlet:nil];
-    [self setScrollView:nil];
-    [self setGrandTotalLabel:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    //[self updateTimeDisplay];
+    
 }
 
 - (IBAction)calculateTotalsButton:(id)sender {
-    
-    
-    [self costComparison];
     
     int foodValue = [foodExpensesOutlet.text intValue];
     int totalFoodValue = [foodTotalLabel.text intValue];
@@ -93,6 +125,9 @@
     foodExpensesOutlet.text = @"";
     gasExpensesOutlet.text = @"";
     tollsExpensesOutlet.text = @"";
+    
+    [self costComparison];
+
 }
 
 -(void)costComparison{
@@ -101,16 +136,17 @@
     int budgetValueInteger = [self.budgetValue intValue];
     
     if(grandValue > budgetValueInteger){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"\n\n\n\n" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
-        UITextView *someTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, 250, 100)];
-        someTextView.backgroundColor = [UIColor redColor];
-        someTextView.textColor = [UIColor clearColor];
-        someTextView.editable = NO;
-        someTextView.font = [UIFont systemFontOfSize:20];
-        someTextView.text = @"Budget Value Exceeded";
-        [alert addSubview:someTextView];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"\n\n\n\n" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+//        UITextView *someTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, 250, 100)];
+//        someTextView.backgroundColor = [UIColor redColor];
+//        someTextView.textColor = [UIColor clearColor];
+//        someTextView.editable = NO;
+//        someTextView.font = [UIFont systemFontOfSize:20];
+//        someTextView.text = @"Budget Value Exceeded";
+//        [alert addSubview:someTextView];
+//        [alert show];
         grandTotalLabel.textColor = [UIColor redColor];
+        
     }
     else{
         grandTotalLabel.textColor = [UIColor orangeColor];
@@ -136,5 +172,8 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+- (void)viewDidUnload {
+    [super viewDidUnload];
 }
 @end
