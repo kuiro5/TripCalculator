@@ -15,11 +15,13 @@
 - (double) timeElapsedInSeconds;
 - (double) timeElapsedInMinutes;
 - (double) timeElapsedInHours;
++(id)sharedInstance;
 -(NSString*)timeTraveled;
 
-//- (void) updateTimeDisplay;
+//- (void) updateTimeDisplay; 
 
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSDate *end;
 @property (strong, nonatomic) NSString *timeElapsed;
+
 @end

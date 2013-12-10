@@ -52,7 +52,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
-        self.model = [[jjkModel alloc] init];
+        self.model = [jjkModel sharedInstance];
         
     }
     return self;
@@ -61,18 +61,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self.model startTimer];
-    
-
-   // [self updateTimeDisplay];
-    
-	// Do any additional setup after loading the view.
-    if(self.tripTimer == nil)
-    {
-    
-        
-    }
-    
     
     if(startTimer)
     {
