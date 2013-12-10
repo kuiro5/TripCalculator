@@ -8,7 +8,7 @@
 
 #import "Model.h"
 @interface Model ()
-@property (strong,nonatomic) NSMutableArray *costInformation;
+@property (strong,retain) NSMutableArray *costInformation;
 
 @end
 @implementation Model
@@ -29,13 +29,22 @@
     if(self)
     {
         // initialization
-        self.costInformation = [[NSMutableArray alloc] init];
+        NSDictionary *newCost = [[NSDictionary alloc] initWithObjectsAndKeys: @"gas", @"cost type", @"20", @"money cost", @"", @"description", @"", @"latitude", @"", @"longitude",  nil];
+
+        self.costInformation = [[NSMutableArray alloc] init ];//]WithObjects:newCost, nil];
     }
     return self;
 }
 
+-(NSMutableArray*)currentCostInformation
+{
+  
+    return _costInformation;
+}
+
 -(void)addNewCost:(NSDictionary*)newCost
 {
+   
     NSLog(@"adding new cost");
     [self.costInformation addObject:newCost];
 

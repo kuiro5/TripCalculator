@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Model : NSObject
++(id)sharedInstance;
 -(void)addNewCost:(NSDictionary*)newCost;
+-(NSMutableArray*)currentCostInformation;
 @end

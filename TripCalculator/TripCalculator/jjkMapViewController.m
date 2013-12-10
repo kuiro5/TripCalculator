@@ -22,13 +22,10 @@
 
 @implementation jjkMapViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        //NSLog(@"check");
-        self.mapView.showsUserLocation = YES;
-        
+        _model = [[Model alloc] init];
     }
     return self;
 }
@@ -171,13 +168,46 @@
     return renderer;
 }
 
+-(void)addCostsToMap//:(NSDictionary*)costAdded
+{
+    NSMutableArray *currentCosts = [[NSMutableArray alloc] init];
+    currentCosts = [self.model currentCostInformation];
+    
+    for(int i = 0; i < [currentCosts count]; i++)
+    {
+        NSDictionary* costAdded = [currentCosts objectAtIndex:i];
+        CLLocationDegrees latitude = [[costAdded objectForKey:@"latitude"] doubleValue];
+        CLLocationDegrees longitude = [[costAdded objectForKey:@"longitude"] doubleValue];
+        NSString *type = [costAdded objectForKey:@"cost type"];
+        NSString *cost = [costAdded objectForKey:@"money cost"];
+        
+        //CLLocationCoordinate2D costCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        
+        
+        MKPointAnnotation *newCostAnnotation = [[MKPointAnnotation alloc] init];
+        [newCostAnnotation setCoordinate:self.mapView.centerCoordinate];
+        [newCostAnnotation setTitle:type];
+        [newCostAnnotation setSubtitle:cost];
+        [self.mapView addAnnotation:newCostAnnotation];
 
+        
+        
+    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"view did appear");
+    [self addCostsToMap];
+}
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     
     self.mapView.delegate = self;
     self.geocodedAddresses = [[NSMutableArray alloc] init];
@@ -186,6 +216,8 @@
     NSMutableArray *locations = [[NSMutableArray alloc]initWithObjects:self.starting, self.destination, nil];
     
     [self geocodeAddress:locations];
+    
+    //[self addCostsToMap];
     
 }
 

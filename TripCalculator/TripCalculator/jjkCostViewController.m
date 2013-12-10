@@ -7,6 +7,7 @@
 //
 
 #import "jjkCostViewController.h"
+#import "jjkMapViewController.h"
 
 @interface jjkCostViewController ()
 @property (strong, nonatomic) UIPickerView *costTypePicker;
@@ -16,22 +17,23 @@
 @property (weak, nonatomic) IBOutlet UITextField *latitudeTextField;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)cancelButtonPressed:(id)sender;
+@property(strong, nonatomic)jjkMapViewController *mapView;
 
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (strong, nonatomic)NSArray *costTypes;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *currentLocation;
+//@property (retain, nonatomic) NSDictionary *newCost;
 @end
 
 @implementation jjkCostViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
         _model = [[Model alloc] init];
+        _mapView = [[jjkMapViewController alloc] init];
     }
     return self;
 }
@@ -162,13 +164,15 @@
 - (IBAction)saveButtonPressed:(id)sender
 {
     NSLog(@"save getting pressed");
-    NSNumber *latitude = [NSNumber numberWithDouble:38.1075];
-    NSNumber *longitude = [NSNumber numberWithDouble:-122.264];
+    NSNumber *latitude = [NSNumber numberWithDouble:40.798938];
+    NSNumber *longitude = [NSNumber numberWithDouble:-77.861298];
     
     NSDictionary *newCost = [[NSDictionary alloc] initWithObjectsAndKeys:self.typeOfCostTextField.text, @"cost type", self.moneyTextField.text, @"money cost", self.descriptionTextField.text, @"description", latitude, @"latitude", longitude, @"longitude",  nil];
     NSLog(@"after dictionary");
     
     [self.model addNewCost:newCost];
+    
+    //[self.mapView addCostsToMap];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
