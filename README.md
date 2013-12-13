@@ -18,8 +18,8 @@ To Do (December 10, 2013):<br>
 <br>
 -<b>Direction View Controller</b><br>
 -~~add color~~<br>
--fix table height (dynamically)
--label at top<br>
+-fix table height (dynamically)<br>
+-~~label at top~~<br>
 <br>
 -<b>Graph View Controller</b><br>
 -redo title<br>
@@ -45,7 +45,7 @@ To Do (December 10, 2013):<br>
 <br><br>
 Misc:
 -Add slide segues<br>
--animations
+-animations<br>
 -Core Data to save past searches?<br>
 
 
