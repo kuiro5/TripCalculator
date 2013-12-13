@@ -5,10 +5,10 @@ Final Project for iOS Course
 
 To Do (December 10, 2013):<br>
 -<b>Main View Controller</b><br>
--Current Trip button grayed out unless trip in progress<br>
--Must enter starting, destination, time, and budget<br>
--clear everything on new trip<br>
--fix keyboard/scroll<br>
+-~~Current Trip button grayed out unless trip in progress~~<br>
+-~~Must enter starting, destination, time, and budget~~<br>
+-~~clear everything on new trip~~<br>
+-~~fix keyboard/scroll~~<br>
 <br>
 -<b>Map View Controller</b><br>
 -directions toolbar?<br>
