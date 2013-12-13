@@ -142,19 +142,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="cn9-Pl-dmr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="373"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="YUW-yr-fQJ" id="2IM-Ek-W62"/>
                                 </connections>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ncd-SF-axJ">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7bv-8l-D5s"/>
+                                    <barButtonItem title="Turn-by-Turn" id="bwz-Ka-ssf">
+                                        <connections>
+                                            <segue destination="83F-Hw-kxG" kind="push" identifier="ResultsTableSegue" id="agY-iX-hWo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kR6-9Q-KAr"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="0uA-hY-qNA">
-                        <barButtonItem key="rightBarButtonItem" title="Directions" id="NgW-0d-Bgi">
+                        <barButtonItem key="rightBarButtonItem" title="Cost" id="NgW-0d-Bgi">
                             <connections>
-                                <segue destination="83F-Hw-kxG" kind="push" id="gJE-NO-KJp"/>
+                                <segue destination="4Ox-Vg-ojf" kind="push" id="qOu-Gm-W17"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -219,17 +232,11 @@
                             <outlet property="delegate" destination="83F-Hw-kxG" id="fRY-BE-f12"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CiL-d2-3MZ">
-                        <barButtonItem key="rightBarButtonItem" title="Cost" id="Fdm-AW-0aG">
-                            <connections>
-                                <segue destination="4Ox-Vg-ojf" kind="push" id="GR0-Iu-Kdi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="CiL-d2-3MZ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-Zs-PgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470" y="-78"/>
+            <point key="canvasLocation" x="376" y="532"/>
         </scene>
         <!--Jjk Graph View Controller-->
         <scene sceneID="YJx-QJ-ids">
@@ -371,6 +378,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RN3-yc-oFY"/>
+        <segue reference="qOu-Gm-W17"/>
     </inferredMetricsTieBreakers>
 </document>

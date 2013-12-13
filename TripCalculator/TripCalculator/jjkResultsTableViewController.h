@@ -14,5 +14,6 @@
 @interface jjkResultsTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) MKDirectionsResponse *route;
-
+@property(strong, nonatomic) NSString *totalMiles; 
+@property (strong, nonatomic) MKRoute *shortestRoute;
 @end

@@ -11,7 +11,7 @@
 
 @interface jjkResultsTableViewController ()
 
-@property (strong, nonatomic) MKRoute *selectedDirections;
+//@property (strong, nonatomic) MKRoute *selectedDirections;
 
 @end
 
@@ -29,7 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.selectedDirections = [self.route.routes objectAtIndex:0];
+    double convert = self.shortestRoute.distance;
+    convert = convert * .000621371;
+    
+    self.title = [NSString stringWithFormat:@"Total Miles: %.01f", convert];
+    //self.selectedDirections = self.shortestRoute;
 	// Do any additional setup after loading the view.
 }
 
@@ -47,8 +51,8 @@
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"calling numbers");
-    NSLog(@"%d", self.selectedDirections.steps.count);
-    return self.selectedDirections.steps.count;
+    NSLog(@"%d", self.shortestRoute.steps.count);
+    return self.shortestRoute.steps.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -64,7 +68,26 @@
         
     }
     
-    MKRouteStep *temporary = [self.selectedDirections.steps objectAtIndex:indexPath.row];
+    UIColor* const COLOR_LIGHT_BLUE = [[UIColor alloc] initWithRed:21.0f/255 green:180.0f/255  blue:1 alpha:1];
+    
+    
+    tableView.backgroundView = nil;
+    
+    tableView.backgroundView = [[UIView alloc] init];
+    
+    tableView.separatorColor = [UIColor grayColor];
+    
+    tableView.backgroundColor = [UIColor whiteColor];
+    
+    cell.directionLabel.textColor = COLOR_LIGHT_BLUE;
+    
+    cell.noticeLabel.textColor = [UIColor orangeColor];
+    
+    cell.distanceLabel.textColor = [UIColor orangeColor];
+    
+    
+    
+    MKRouteStep *temporary = [self.shortestRoute.steps objectAtIndex:indexPath.row];
     
     float mileConversion = temporary.distance * 0.000621371;
     cell.directionLabel.text = temporary.instructions;

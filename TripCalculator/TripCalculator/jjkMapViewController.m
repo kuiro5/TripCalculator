@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *geocodedAddresses;
 @property (strong, nonatomic) NSMutableArray *routePoints;
 @property (strong, nonatomic) MKDirectionsResponse *route;
+@property (strong, nonatomic) MKRoute *shortestRoute;
 
 @end
 
@@ -152,11 +153,32 @@
 -(void)showRoute:(MKDirectionsResponse *)response
 {
     self.route = response;
+    MKRoute *route;
+    long double temporaryPath = 99999999999999999;
     
-    for (MKRoute *route in response.routes)
+    
+    for (route in response.routes)
     {
-        [self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+        if(route.distance < temporaryPath)
+        {
+            temporaryPath = route.distance;
+            self.shortestRoute = route;
+        }
     }
+    
+    [self.mapView addOverlay:self.shortestRoute.polyline level:MKOverlayLevelAboveRoads];
+    
+//    UILabel *distanceLabel = [ [UILabel alloc ] initWithFrame:CGRectMake((self.mapView.bounds.size.width / 3), self.mapView.bounds.origin.y + 20, 150.0, 43.0) ];
+    //[distanceLabel setCenter:self.view.center];
+//    distanceLabel.textColor = [UIColor blackColor];
+//    distanceLabel.backgroundColor = [UIColor clearColor];
+//    distanceLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:(20.0)];
+//    [self.mapView addSubview:distanceLabel];
+//    double convert = shortestRoute.distance;
+//    convert = convert * .000621371;
+//    distanceLabel.text = [NSString stringWithFormat: @"%.02f miles", convert];
+
+
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
@@ -175,7 +197,7 @@
     
     for(int i = 0; i < [currentCosts count]; i++)
     {
-        NSDictionary* costAdded = [currentCosts objectAtIndex:i];
+        NSDictionary *costAdded = [currentCosts objectAtIndex:i];
         CLLocationDegrees latitude = self.mapView.centerCoordinate.latitude;
         CLLocationDegrees longitude = self.mapView.centerCoordinate.longitude;
         
@@ -195,6 +217,14 @@
         [newCostAnnotation setCoordinate:costCoordinate];
         [newCostAnnotation setTitle:type];
         [newCostAnnotation setSubtitle:cost];
+        
+        
+        
+        
+        
+        
+        
+        
         [self.mapView addAnnotation:newCostAnnotation];
 
         
@@ -202,6 +232,37 @@
     }
     
 }
+
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
+{
+    MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MyPin"];
+    
+    annView.canShowCallout = YES;
+    [annView setSelected:YES];
+    
+    if([annotation.title isEqualToString:@"Gas"])
+    {
+        annView.pinColor = MKPinAnnotationColorGreen;
+    }
+    else if ([annotation.title isEqualToString:@"Food"])
+    {
+        annView.pinColor = MKPinAnnotationColorPurple;
+    }
+    else if([annotation.title isEqualToString:@"Tolls"])
+    {
+        annView.pinColor = MKPinAnnotationColorGreen;
+    }
+    else if([annotation.title isEqualToString:@"Misc"])
+    {
+        annView.pinColor = MKPinAnnotationColorPurple;
+    }
+    
+    annView.calloutOffset = CGPointMake(-5, 5);
+    annView.animatesDrop=YES;
+    return annView;
+}
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -215,7 +276,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    self.shortestRoute = [[MKRoute alloc] init];
     self.mapView.delegate = self;
     self.geocodedAddresses = [[NSMutableArray alloc] init];
     self.routePoints = [[NSMutableArray alloc] init];
@@ -248,8 +309,11 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //NSLog(@"preparing for segue!");
-    jjkResultsTableViewController *resultsTableView = segue.destinationViewController;
-    resultsTableView.route = self.route;
+    if([segue.identifier isEqualToString:@"ResultsTableSegue"])
+    {
+        jjkResultsTableViewController *resultsTableView = segue.destinationViewController;
+        resultsTableView.shortestRoute = self.shortestRoute;
+    }
 }
 
 
