@@ -11,13 +11,14 @@ To Do (December 10, 2013):<br>
 -~~fix keyboard/scroll~~<br>
 <br>
 -<b>Map View Controller</b><br>
--directions toolbar?<br>
--Label multiple routes functionality?<br>
--pins different colors<br>
+-~~directions toolbar?~~<br>
+-~~Label multiple routes functionality?~~<br>
+-~~pins different colors~~<br>
 -mpg based off route?<br>
 <br>
 -<b>Direction View Controller</b><br>
--add color<br>
+-~~add color~~<br>
+-fix table height (dynamically)
 -label at top<br>
 <br>
 -<b>Graph View Controller</b><br>
