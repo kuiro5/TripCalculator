@@ -7,9 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
 
 @interface Model : NSObject
 +(id)sharedInstance;
 -(void)addNewCost:(NSDictionary*)newCost;
 -(NSMutableArray*)currentCostInformation;
+
+- (void) startTimer;
+- (void) stopTimer;
+- (double) timeElapsedInSeconds;
+- (double) timeElapsedInMinutes;
+- (double) timeElapsedInHours;
+-(NSString*)timeTraveled;
+
+@property (strong, nonatomic) NSDate *start;
+@property (strong, nonatomic) NSDate *end;
+@property (strong, nonatomic) NSString *timeElapsed;
+@property (strong, nonatomic) NSTimer *tripTimer;
+@property BOOL tripInProgess;
+-(void)clearTrip;
+
 @end

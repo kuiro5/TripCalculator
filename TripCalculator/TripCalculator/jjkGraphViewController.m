@@ -7,12 +7,15 @@
 //
 
 #import "jjkGraphViewController.h"
-
 #import "jjkCostViewController.h"
+#define LABEL_OFFSET 100
 
 @interface jjkGraphViewController ()
+
 @property (strong, nonatomic) CPTGraphHostingView *hostView;
 @property (strong, nonatomic) CPTTheme *selectedTheme;
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+
 
 -(void)initPlot;
 -(void)configureHost;
@@ -21,6 +24,8 @@
 -(void)configureLegend;
 
 @end
+
+//static BOOL startTimer = YES;
 
 @implementation jjkGraphViewController
 
@@ -43,6 +48,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    if(startTimer)
+    {
+        [self.model startTimer];
+        startTimer = NO;
+    }
 }
 
 #pragma mark - Chart behavior
@@ -60,7 +71,7 @@
     CGRect parentRect = self.view.bounds;
     //CGSize toolbarSize = self.toolbar.bounds.size;
     parentRect = CGRectMake(parentRect.origin.x,
-                            parentRect.origin.y,
+                            parentRect.origin.y + LABEL_OFFSET,
                             parentRect.size.width,
                             parentRect.size.height);
     // 2 - Create host view
@@ -81,15 +92,15 @@
     graph.axisSet = nil;
     // 2 - Set up text style
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
-    textStyle.color = [CPTColor grayColor];
-    textStyle.fontName = @"Helvetica-Bold";
-    textStyle.fontSize = 16.0f;
+    textStyle.color = [CPTColor blackColor];
+    textStyle.fontName = @"Noteworthy";
+    textStyle.fontSize = 28.0f;
     // 3 - Configure title
     NSString *title = @"Cost Analysis";
     graph.title = title;
     graph.titleTextStyle = textStyle;
     graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
-    graph.titleDisplacement = CGPointMake(0.0f, -75.0f);
+    graph.titleDisplacement = CGPointMake(0.0f, -10.0f);
     // 4 - Set theme
     self.selectedTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     [graph applyTheme:self.selectedTheme];
@@ -194,6 +205,20 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"actionshett");
 }
+
+#pragma mark-timer
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.model.tripTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60) target:self selector:@selector(updateTimeDisplay) userInfo:nil repeats:YES];
+    
+}
+
+- (void) updateTimeDisplay {
+    
+    self.timerLabel.text = [self.model timeTraveled];
+    
+}
+
 
 
 @end

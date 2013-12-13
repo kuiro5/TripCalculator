@@ -24,8 +24,11 @@
 @property (strong, nonatomic)NSArray *costTypes;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *currentLocation;
+
 //@property (retain, nonatomic) NSDictionary *newCost;
 @end
+
+//static BOOL startTimer = YES;
 
 @implementation jjkCostViewController
 
@@ -177,4 +180,10 @@
 
 - (IBAction)cancelButtonPressed:(id)sender {
 }
+
+
+
+
+
+
 @end

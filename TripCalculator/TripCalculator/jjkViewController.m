@@ -8,19 +8,36 @@
 
 #import "jjkViewController.h"
 #import "jjkMapViewController.h"
+#import "jjkGraphViewController.h"
+
 
 @interface jjkViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *tripNameTextField;
 
+@property (weak, nonatomic) IBOutlet UIButton *currentTripButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *startingTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *budgetTextField;
+@property (weak, nonatomic) IBOutlet UITextField *timeTextField;
 - (IBAction)calculatePressed:(id)sender;
 
 @end
 
+BOOL canStartTrip = NO;
+
 @implementation jjkViewController
+
+
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _model = [Model sharedInstance];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -29,9 +46,30 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.scrollView.contentSize = self.view.frame.size;
+    
+    self.scrollView.delegate = self;
+    
     self.scrollView.userInteractionEnabled = YES;
+    
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tripNameTextField.text = @"";
+    self.startingTextField.text = @"";
+    self.destinationTextField.text = @"";
+    self.budgetTextField.text = @"";
+    self.timeTextField.text = @"";
+    
+    if(self.model.tripInProgess == NO)
+    {
+        self.currentTripButton.enabled = NO;
+    }
+    else
+    {
+        self.currentTripButton.enabled = YES;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,21 +79,53 @@
 
 - (IBAction)calculatePressed:(id)sender
 {
+    NSLog(@"new trip");
+    [self.model clearTrip];
+    startTimer = YES;
+    self.model.tripInProgess = YES;
+
     
+    if([self.startingTextField.text isEqualToString:@""] || [self.destinationTextField.text isEqualToString:@""] || [self.budgetTextField.text isEqualToString:@""] || [self.timeTextField.text isEqualToString:@""])
+    {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                          message:@"You must enter a Starting Location, Destination, Target Budget, and Time!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        canStartTrip = NO;
+    }
+    else
+    {
+        canStartTrip = YES;
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if(canStartTrip)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
     NSLog(@"inside did begin editing");
-    UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
+    UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 250.0, 0.0);
     self.scrollView.contentInset = insets;
     
 }
 
 -(void)textFieldDidEndEditing:(UITextField*)textField
 {
-    UIEdgeInsets insets  = UIEdgeInsetsZero;
-    self.scrollView.contentInset = insets;
+    //UIEdgeInsets insets  = UIEdgeInsetsZero;
+    //self.scrollView.contentInset = insets;
     
 }
 
@@ -63,18 +133,11 @@
 {
     [textField resignFirstResponder];
     
-    return YES;
-}
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-//   if(self.startingTextField.text.length == 0 || self.destinationTextField.text.length == 0){
-//        return NO;
-//    
-//    }
-//    else
-//    {
-        return YES;
-//    }
+    
+    return YES;
 }
 
 

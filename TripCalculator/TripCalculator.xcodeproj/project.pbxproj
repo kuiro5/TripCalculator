@@ -34,6 +34,7 @@
 		7B8D0169184D86DC00FE2337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0861832DBE4008AAAB9 /* MapKit.framework */; };
 		7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C92185636990009C0CD /* jjkCostViewController.m */; };
 		7BAA5C961856539C0009C0CD /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C951856539C0009C0CD /* Model.m */; };
+		7BD49ACE185A76A000337BDD /* jjkCustomSlideSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,8 @@
 		7BAA5C92185636990009C0CD /* jjkCostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCostViewController.m; sourceTree = "<group>"; };
 		7BAA5C941856539C0009C0CD /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		7BAA5C951856539C0009C0CD /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		7BD49ACC185A76A000337BDD /* jjkCustomSlideSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCustomSlideSegue.h; sourceTree = "<group>"; };
+		7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCustomSlideSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +396,8 @@
 				7B42B17B185145CA0037C5FE /* jjkGraphViewController.m */,
 				7BAA5C91185636990009C0CD /* jjkCostViewController.h */,
 				7BAA5C92185636990009C0CD /* jjkCostViewController.m */,
+				7BD49ACC185A76A000337BDD /* jjkCustomSlideSegue.h */,
+				7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 				7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */,
 				7B42B1731851293F0037C5FE /* jjkResultsTableViewController.m in Sources */,
 				7BAA5C961856539C0009C0CD /* Model.m in Sources */,
+				7BD49ACE185A76A000337BDD /* jjkCustomSlideSegue.m in Sources */,
 				7B40E07D1832D345008AAAB9 /* jjkMapViewController.m in Sources */,
 				7B40E0551832CE38008AAAB9 /* jjkAppDelegate.m in Sources */,
 				7B42B17C185145CA0037C5FE /* jjkGraphViewController.m in Sources */,
@@ -646,10 +652,7 @@
 					"$(inherited)",
 					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -673,10 +676,7 @@
 					"$(inherited)",
 					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -15,3 +15,5 @@
 @interface jjkCostViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate,CLLocationManagerDelegate>
 @property (strong,nonatomic) Model *model;
 @end
+
+

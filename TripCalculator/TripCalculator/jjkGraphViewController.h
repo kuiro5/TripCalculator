@@ -13,3 +13,4 @@
 @interface jjkGraphViewController : UIViewController <CPTPlotDataSource, UIActionSheetDelegate>
 @property (strong,nonatomic) Model *model;
 @end
+static BOOL startTimer = YES;

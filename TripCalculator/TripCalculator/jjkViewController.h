@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Model.h"
 
-@interface jjkViewController : UIViewController
-
+@interface jjkViewController : UIViewController <UIScrollViewDelegate>
+@property (strong,nonatomic) Model *model;
 @end
