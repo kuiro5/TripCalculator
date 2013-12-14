@@ -26,11 +26,11 @@ To Do (December 10, 2013):<br>
 -~~position chart correctly~~<br>
 -~~totals for each type of cost (instead of adding every single cost)~~<br>
 -~~legend~~<br>
--chart?<br>
+-~~chart?~~<br>
 -~~add timer~~<br>
 -accelerometer?<br>
--click on chart/buttons for cost summary<br>
--background?<br>
+-~~click on chart/buttons for cost summary~~<br>
+-~~background?~~<br>
 -~~animate adding a chart record~~<br>
 <br>
 -<b>Cost View Controller</b><br>
