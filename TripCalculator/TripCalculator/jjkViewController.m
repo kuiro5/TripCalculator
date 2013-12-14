@@ -48,6 +48,9 @@ BOOL canStartTrip = NO;
     
     self.scrollView.contentSize = self.view.frame.size;
     
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
+    
     self.scrollView.delegate = self;
     
     self.scrollView.userInteractionEnabled = YES;
@@ -60,6 +63,9 @@ BOOL canStartTrip = NO;
     self.destinationTextField.text = @"";
     self.budgetTextField.text = @"";
     self.timeTextField.text = @"";
+    
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
     
     if(self.model.tripInProgess == NO)
     {
@@ -117,7 +123,7 @@ BOOL canStartTrip = NO;
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
    // NSLog(@"inside did begin editing");
-    UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 250.0, 0.0);
+    UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
     self.scrollView.contentInset = insets;
     
 }

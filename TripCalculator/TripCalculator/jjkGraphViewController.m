@@ -79,9 +79,11 @@
     parentRect = CGRectMake(parentRect.origin.x,
                             parentRect.origin.y + LABEL_OFFSET,
                             parentRect.size.width,
-                            parentRect.size.height - LABEL_OFFSET);
+                            parentRect.size.height - LABEL_OFFSET - 175.0);
     // 2 - Create host view
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:parentRect];
+    //self.hostView.backgroundColor = [UIColor clearColor];
+    //self.hostView.alpha = 0.6;
     self.hostView.allowPinchScaling = NO;
     [self.view addSubview:self.hostView];
 }
@@ -89,13 +91,18 @@
 -(void)configureGraph {
     //NSLog(@"configuregraph");
     // 1 - Create and initialize graph
+    //CGRect *newFrame = [CGRectMake(0.0, 0.0, self.hostView.bounds.size.width, self.hostView.bounds.size.height-175.0)]
+    //CGRect newRect = CGRectMake(0.0, 0.0, self.hostView.bounds.size.width, self.hostView.bounds.size.height-500.0);
     self.mainGraph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
     self.mainGraph.borderColor = [[UIColor clearColor] CGColor];
+    self.mainGraph.backgroundColor = [[UIColor lightGrayColor] CGColor];
+    self.mainGraph.fill = nil;
     self.hostView.hostedGraph = self.mainGraph;
     self.mainGraph.paddingLeft = 0.0f;
     self.mainGraph.paddingTop = 0.0f;
     self.mainGraph.paddingRight = 0.0f;
-    self.mainGraph.paddingBottom = 175.0f;
+    self.mainGraph.paddingBottom = 0.0f;
+    self.mainGraph.fill = [CPTFill fillWithColor:[CPTColor clearColor]];
     self.mainGraph.axisSet = nil;
     // 2 - Set up text style
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
@@ -103,7 +110,7 @@
     textStyle.fontName = @"Noteworthy";
     textStyle.fontSize = 28.0f;
     // 3 - Configure title
-    NSString *title = @"Cost Analysis";
+    NSString *title = @"Cost Guide";
     self.mainGraph.title = title;
     self.mainGraph.titleTextStyle = textStyle;
     self.mainGraph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
@@ -120,7 +127,9 @@
     self.pieChart = [[CPTPieChart alloc] init];
     self.pieChart.dataSource = self;
     self.pieChart.delegate = self;
-    self.pieChart.pieRadius = (self.hostView.bounds.size.height * 0.7) / 5;
+    self.pieChart.backgroundColor = [[UIColor clearColor] CGColor];
+    self.pieChart.borderColor = [[UIColor clearColor] CGColor];
+    self.pieChart.pieRadius = (self.hostView.bounds.size.width * 0.7) / 3;
     self.pieChart.identifier = graph.title;
     self.pieChart.startAngle = M_PI_4;
     self.pieChart.sliceDirection = CPTPieDirectionClockwise;
@@ -147,9 +156,9 @@
     theLegend.cornerRadius = 5.0;
     // 4 - Add legend to graph
     graph.legend = theLegend;
-    graph.legendAnchor = CPTRectAnchorRight;
+    graph.legendAnchor = CPTRectAnchorBottomRight;
     CGFloat legendPadding = -(self.view.bounds.size.width / 100);
-    graph.legendDisplacement = CGPointMake(legendPadding, 0.0);
+    graph.legendDisplacement = CGPointMake(legendPadding, -legendPadding);
 }
 
 - (void)didReceiveMemoryWarning

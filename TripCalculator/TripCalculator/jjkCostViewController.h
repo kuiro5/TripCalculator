@@ -12,7 +12,7 @@
 #import <AddressBook/AddressBook.h>
 #import "Model.h"
 
-@interface jjkCostViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate,CLLocationManagerDelegate>
+@interface jjkCostViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate,CLLocationManagerDelegate, UIScrollViewDelegate>
 @property (strong,nonatomic) Model *model;
 @end
 

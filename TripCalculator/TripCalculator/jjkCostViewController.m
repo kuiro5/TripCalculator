@@ -63,10 +63,23 @@ BOOL allowedToSave = NO;
     
     [self.locationManager startUpdatingLocation];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.scrollView.contentSize = self.view.frame.size;
+    
+    self.scrollView.delegate = self;
+    
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
+
  
     self.costLabel.text = @"Add New Cost";
     
@@ -120,6 +133,10 @@ BOOL allowedToSave = NO;
 {
     [textField resignFirstResponder];
     
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
+    
+    
     return YES;
 }
 
@@ -128,7 +145,7 @@ BOOL allowedToSave = NO;
    // NSLog(@"inside did begin editing");
     if(textField.tag != 0 && textField.tag != 3 && textField.tag != 4)
     {
-        UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
+        UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0);
         self.scrollView.contentInset = insets;
     }
     
