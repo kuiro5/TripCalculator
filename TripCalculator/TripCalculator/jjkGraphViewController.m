@@ -90,7 +90,7 @@
     //NSLog(@"configuregraph");
     // 1 - Create and initialize graph
     self.mainGraph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    self.mainGraph.borderColor = kCGColorClear;
+    self.mainGraph.borderColor = [[UIColor clearColor] CGColor];
     self.hostView.hostedGraph = self.mainGraph;
     self.mainGraph.paddingLeft = 0.0f;
     self.mainGraph.paddingTop = 0.0f;

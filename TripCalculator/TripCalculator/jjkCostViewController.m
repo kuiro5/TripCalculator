@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *typeOfCostTextField;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *costLabel;
 @property (weak, nonatomic) IBOutlet UITextField *latitudeTextField;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)cancelButtonPressed:(id)sender;
@@ -28,7 +29,7 @@
 //@property (retain, nonatomic) NSDictionary *newCost;
 @end
 
-//static BOOL startTimer = YES;
+BOOL allowedToSave = NO;
 
 @implementation jjkCostViewController
 
@@ -66,7 +67,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+ 
+    self.costLabel.text = @"Add New Cost";
     
     self.locationManager = [[CLLocationManager alloc] init];
     
@@ -83,7 +85,7 @@
     self.costTypePicker.delegate = self;
     self.typeOfCostTextField.inputView = self.costTypePicker;
     
-    self.costTypes = [[NSArray alloc] initWithObjects:@"Food", @"Gas", @"Tolls", @"Misc", nil];
+    self.costTypes = [[NSArray alloc] initWithObjects:@"", @"Food", @"Gas", @"Tolls", @"Misc", nil];
     
     [self locationForCosts];
 	// Do any additional setup after loading the view.
@@ -110,6 +112,7 @@
     //Now, if you want to navigate then;
     // Say, OtherViewController is the controller, where you want to navigate:
     self.typeOfCostTextField.text = [self.costTypes objectAtIndex:row];
+    [self.typeOfCostTextField resignFirstResponder];
     
 }
 
@@ -122,7 +125,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
-    NSLog(@"inside did begin editing");
+   // NSLog(@"inside did begin editing");
     if(textField.tag != 0 && textField.tag != 3 && textField.tag != 4)
     {
         UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
@@ -179,9 +182,30 @@
     //[];
     
     //[self.mapView addCostsToMap];
+    if([self.typeOfCostTextField.text isEqualToString:@""] || [self.moneyTextField.text isEqualToString:@""])
+    {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                          message:@"You must enter a Type of Cost and Amount to save!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        //allowedToSave = NO;
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+        //allowedToSave = YES;
+    }
 }
 
-- (IBAction)cancelButtonPressed:(id)sender {
+
+- (IBAction)cancelButtonPressed:(id)sender
+{
+    self.typeOfCostTextField.text = @"";
+    self.moneyTextField.text = @"";
+    self.descriptionTextField.text = @"";
 }
 
 

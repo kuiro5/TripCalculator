@@ -79,7 +79,7 @@ BOOL canStartTrip = NO;
 
 - (IBAction)calculatePressed:(id)sender
 {
-    NSLog(@"new trip");
+ //   NSLog(@"new trip");
     [self.model clearTrip];
     startTimer = YES;
     self.model.tripInProgess = YES;
@@ -116,7 +116,7 @@ BOOL canStartTrip = NO;
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
-    NSLog(@"inside did begin editing");
+   // NSLog(@"inside did begin editing");
     UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 250.0, 0.0);
     self.scrollView.contentInset = insets;
     
