@@ -11,5 +11,6 @@
 @interface jjkResultsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *directionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *smallLabel;
 
 @end

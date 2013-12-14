@@ -110,14 +110,19 @@ BOOL canStartTrip = NO;
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if(canStartTrip)
+    if([identifier isEqualToString:@"DirectionSegue"])
     {
-        return YES;
+        if(canStartTrip)
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
     }
-    else
-    {
-        return NO;
-    }
+    
+    return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField

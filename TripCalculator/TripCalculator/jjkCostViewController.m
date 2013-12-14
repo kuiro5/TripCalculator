@@ -8,6 +8,7 @@
 
 #import "jjkCostViewController.h"
 #import "jjkMapViewController.h"
+#import "jjkComprehensiveViewController.h"
 
 @interface jjkCostViewController ()
 @property (strong, nonatomic) UIPickerView *costTypePicker;
@@ -224,6 +225,9 @@ BOOL allowedToSave = NO;
     self.moneyTextField.text = @"";
     self.descriptionTextField.text = @"";
 }
+
+
+
 
 
 

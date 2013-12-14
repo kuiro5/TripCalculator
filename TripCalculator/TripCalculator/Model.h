@@ -31,4 +31,10 @@
 -(void)lastModifiedCost:(NSString*)costType;
 @property (strong, nonatomic) NSString *costToUpdate;
 
+@property(strong, nonatomic)NSMutableArray *gasCostArray;
+@property(strong, nonatomic)NSMutableArray *tollCostArray;
+@property(strong, nonatomic)NSMutableArray *miscCostArray;
+@property(strong, nonatomic)NSMutableArray *foodCostArray;
+
+
 @end

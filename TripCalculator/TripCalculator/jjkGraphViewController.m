@@ -8,6 +8,7 @@
 
 #import "jjkGraphViewController.h"
 #import "jjkCostViewController.h"
+#import "jjkComprehensiveViewController.h"
 #define LABEL_OFFSET 100
 
 @interface jjkGraphViewController ()
@@ -169,10 +170,33 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        jjkCostViewController *costViewController = segue.destinationViewController;
-        //costViewController.delegate = self;
+        NSString *typeOfCostSelected;
+        if([sender tag] == 0)
+        {
+            typeOfCostSelected = @"Gas";
+        }
+        if([sender tag] == 1)
+        {
+            typeOfCostSelected = @"Misc";
+        }
+        if([sender tag] == 2)
+        {
+            typeOfCostSelected = @"Food";
+        }
+        if([sender tag] == 3)
+        {
+            typeOfCostSelected = @"Tolls";
+        }
+        //NSLog(@"preparing for segue!");
+        if([segue.identifier isEqualToString:@"ComprehensiveSegue"])
+        {
+            jjkComprehensiveViewController *comprehensiveView = segue.destinationViewController;
+            comprehensiveView.costType = typeOfCostSelected;
+        }
         
 }
+
+
 
 #pragma mark - CPTPlotDataSource methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {

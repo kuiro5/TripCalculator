@@ -41,6 +41,11 @@ int hours;
 
         self.costInformation = [[NSMutableArray alloc] init ];//]WithObjects:newCost, nil];
         self.totalCostsInformation = [[NSMutableArray alloc] initWithCapacity:4];
+        self.gasCostArray = [[NSMutableArray alloc] init];
+        self.tollCostArray = [[NSMutableArray alloc] init];
+        self.miscCostArray = [[NSMutableArray alloc] init];
+        self.foodCostArray = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -51,12 +56,31 @@ int hours;
     return _costInformation;
 }
 
+
 -(void)addNewCost:(NSDictionary*)newCost
 {
    
     NSLog(@"adding new cost");
     [self.costInformation addObject:newCost];
+    
+    if([[newCost objectForKey:@"cost type"] isEqualToString:@"Gas"])
+    {
+        [self.gasCostArray addObject:newCost];
+    }
+    if([[newCost objectForKey:@"cost type"] isEqualToString:@"Food"])
+    {
+        [self.foodCostArray addObject:newCost];
+    }
+    if([[newCost objectForKey:@"cost type"] isEqualToString:@"Misc"])
+    {
+        [self.miscCostArray addObject:newCost];
+    }
+    if([[newCost objectForKey:@"cost type"] isEqualToString:@"Tolls"])
+    {
+        [self.tollCostArray addObject:newCost];
+    }
 }
+
 
 #pragma mark-timer functions
 - (void) startTimer {
@@ -97,6 +121,10 @@ int hours;
     NSLog(@"clear trip");
     // clear costs with pins
     self.costInformation = [[NSMutableArray alloc] init ];
+    self.gasCostArray = [[NSMutableArray alloc] init];
+    self.tollCostArray = [[NSMutableArray alloc] init];
+    self.miscCostArray = [[NSMutableArray alloc] init];
+    self.foodCostArray = [[NSMutableArray alloc] init];
     
     //reset timer
     self.start = [NSDate date];
