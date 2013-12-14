@@ -652,7 +652,10 @@
 					"$(inherited)",
 					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -676,7 +679,10 @@
 					"$(inherited)",
 					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

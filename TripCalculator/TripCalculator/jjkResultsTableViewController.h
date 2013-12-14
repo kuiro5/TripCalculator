@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
+#import "jjkResultsCell.h"
 
 @interface jjkResultsTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 

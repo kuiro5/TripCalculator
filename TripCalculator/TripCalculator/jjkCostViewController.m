@@ -174,6 +174,9 @@
     NSLog(@"after dictionary");
     
     [self.model addNewCost:newCost];
+    [self.model lastModifiedCost:self.typeOfCostTextField.text];
+    
+    //[];
     
     //[self.mapView addCostsToMap];
 }

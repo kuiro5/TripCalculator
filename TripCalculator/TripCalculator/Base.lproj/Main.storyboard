@@ -196,18 +196,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MgX-Go-Ma0">
-                                            <rect key="frame" x="20" y="10" width="192" height="23"/>
+                                            <rect key="frame" x="20" y="0.0" width="192" height="69"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="directionLabel"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ybC-Eg-Kxq">
-                                            <rect key="frame" x="20" y="41" width="218" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="noticeLabel"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6VZ-vm-KRf">
@@ -223,7 +215,6 @@
                                 <connections>
                                     <outlet property="directionLabel" destination="MgX-Go-Ma0" id="p2m-uM-tCT"/>
                                     <outlet property="distanceLabel" destination="6VZ-vm-KRf" id="64f-UI-X6y"/>
-                                    <outlet property="noticeLabel" destination="ybC-Eg-Kxq" id="sIl-B2-wfe"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

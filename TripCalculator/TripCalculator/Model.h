@@ -27,5 +27,8 @@
 @property (strong, nonatomic) NSTimer *tripTimer;
 @property BOOL tripInProgess;
 -(void)clearTrip;
+-(NSMutableArray*)totalsArray;
+-(void)lastModifiedCost:(NSString*)costType;
+@property (strong, nonatomic) NSString *costToUpdate;
 
 @end

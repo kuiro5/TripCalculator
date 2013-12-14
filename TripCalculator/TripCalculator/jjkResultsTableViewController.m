@@ -7,11 +7,14 @@
 //
 
 #import "jjkResultsTableViewController.h"
-#import "jjkResultsCell.h"
+//#import "jjkResultsCell.h"
+
+//#define DEFAULT_CELL_FONT
 
 @interface jjkResultsTableViewController ()
 
 //@property (strong, nonatomic) MKRoute *selectedDirections;
+@property(strong, nonatomic)UIFont *cellFont;
 
 @end
 
@@ -29,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.cellFont = [[UIFont alloc] init];
+    self.cellFont = [UIFont fontWithName:@"System" size:15];
     double convert = self.shortestRoute.distance;
     convert = convert * .000621371;
     
@@ -54,6 +59,22 @@
     NSLog(@"%d", self.shortestRoute.steps.count);
     return self.shortestRoute.steps.count;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //static NSString *CellIdentifier = @"resultCell";
+//    jjkResultsCell *currentCell = (jjkResultsCell*)[tableView cellForRowAtIndexPath:indexPath];
+//    NSString *text = currentCell.directionLabel.text;
+//    NSDictionary *stringAttributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:15] forKey: NSFontAttributeName];
+//    
+//    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+//    //You will need to define kDefaultCellFont
+//    //CGSize labelSize = [text sizeWithFont:self.cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+//    CGSize labelSize = [text boundingRectWithSize:constraintSize
+//                         options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
+//                                         attributes:stringAttributes context:nil].size;
+//    return labelSize.height;
+//}
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -81,7 +102,7 @@
     
     cell.directionLabel.textColor = COLOR_LIGHT_BLUE;
     
-    cell.noticeLabel.textColor = [UIColor orangeColor];
+    //cell.noticeLabel.textColor = [UIColor orangeColor];
     
     cell.distanceLabel.textColor = [UIColor orangeColor];
     
@@ -91,9 +112,9 @@
     
     float mileConversion = temporary.distance * 0.000621371;
     cell.directionLabel.text = temporary.instructions;
-    [cell.directionLabel sizeToFit];
-    cell.noticeLabel.text = temporary.notice;
-    [cell.noticeLabel sizeToFit];
+    //[cell.directionLabel sizeToFit];
+    //cell.noticeLabel.text = temporary.notice;
+    //[cell.noticeLabel sizeToFit];
     cell.distanceLabel.text = [NSString stringWithFormat:@"%.02f miles",mileConversion];
     
     
