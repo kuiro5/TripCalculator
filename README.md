@@ -40,7 +40,7 @@ To Do (December 10, 2013):<br>
 -support cents<br>
 -~~save is grayed out unless type and money are entered~~<br>
 -~~fix uipickerview~~<br>
--fix keyboard<br>
+-~~fix keyboard~~<br>
 -~~cancel should clear and dismiss view controller~~<br>
 <br><br>
 Misc:
