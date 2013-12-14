@@ -18,30 +18,30 @@ To Do (December 10, 2013):<br>
 <br>
 -<b>Direction View Controller</b><br>
 -~~add color~~<br>
--fix table height (dynamically)<br>
+-~~fix table height (dynamically)~~<br>
 -~~label at top~~<br>
 <br>
 -<b>Graph View Controller</b><br>
--redo title<br>
--position chart correctly<br>
--totals for each type of cost (instead of adding every single cost)<br>
--legend<br>
+-~~redo title~~<br>
+-~~position chart correctly~~<br>
+-~~totals for each type of cost (instead of adding every single cost)~~<br>
+-~~legend~~<br>
 -chart?<br>
--add timer<br>
+-~~add timer~~<br>
 -accelerometer?<br>
 -click on chart/buttons for cost summary<br>
 -background?<br>
--animate adding a chart record<br>
+-~~animate adding a chart record~~<br>
 <br>
 -<b>Cost View Controller</b><br>
--title<br>
--background<br>
--dismiss on save pressed<br>
+-~~title~~<br>
+-~~background~~<br>
+-~~dismiss on save pressed~~<br>
 -support cents<br>
--save is grayed out unless type and money are entered<br>
--fix uipickerview<br>
+-~~save is grayed out unless type and money are entered~~<br>
+-~~fix uipickerview~~<br>
 -fix keyboard<br>
--cancel should clear and dismiss view controller<br>
+-~~cancel should clear and dismiss view controller~~<br>
 <br><br>
 Misc:
 -Add slide segues<br>
