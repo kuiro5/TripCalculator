@@ -19,6 +19,10 @@
 @property (strong, nonatomic) NSMutableArray *totalCostSum;
 @property (strong, nonatomic) CPTGraph *mainGraph;
 @property (strong, nonatomic) CPTPieChart *pieChart;
+@property (weak, nonatomic) IBOutlet UILabel *moneySpentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLeftLabel;
+@property (strong, nonatomic) NSString *timeStopped;
+- (IBAction)endTrip:(id)sender;
 
 -(void)initPlot;
 -(void)configureHost;
@@ -39,6 +43,14 @@
         }
     return self;
 }
+-(id)init
+{
+    if(self)
+    {
+    self.timeStopped = @"";
+    }
+    return self;
+}
 
 #pragma mark - UIViewController lifecycle methods
 -(void)viewDidAppear:(BOOL)animated {
@@ -46,24 +58,64 @@
     // The plot is initialized here, since the view bounds have not transformed for landscape until now
     self.totalCostSum = [self.model totalsArray];
     [self initPlot];
+    [self updateCostLabels];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    if(![self.model.tripName isEqualToString:@""])
+    {
+        self.title = self.model.tripName;
+    }
+
+    [self updateCostLabels];
 
     self.totalCostSum = [[NSMutableArray alloc] init];
     self.totalCostSum = [self.model totalsArray];
     
-    if(startTimer)
+    if(!self.model.timestopped)
     {
-        [self.model startTimer];
-        startTimer = NO;
+        if(startTimer)
+        {
+            [self.model startTimer];
+            startTimer = NO;
+        }
+    }
+    else
+    {
+        self.timerLabel.text = self.model.timeEnded;
     }
 }
 
+
+-(void)updateCostLabels
+{
+    float moneySpent =  0;
+    NSMutableArray *costs = [self.model currentTotalCostInformation];
+    
+    for(NSDictionary *index in costs)
+    {
+        NSNumber *currentCostAmount = [index objectForKey:@"total"];
+        float temporaryFloat = [currentCostAmount floatValue];
+        moneySpent += temporaryFloat;
+    }
+    
+    
+    
+    self.moneySpentLabel.text = [NSString stringWithFormat:@"Spent: $%.02f", moneySpent];
+    float moneyLeft =[self.model budgetValue] - moneySpent;
+    self.moneyLeftLabel.text = [NSString stringWithFormat:@"Remaining: $%.02f", moneyLeft];
+}
+
 #pragma mark - Chart behavior
+- (IBAction)endTrip:(id)sender
+{
+    [self.model timeTripEnded:self.timerLabel.text];
+    [self.model stopTimer];
+}
+
 -(void)initPlot {
     //NSLog(@"initplot");
     [self configureHost];
@@ -293,20 +345,17 @@
 #pragma mark-timer
 -(void)viewWillAppear:(BOOL)animated{
     
-    self.model.tripTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60) target:self selector:@selector(updateTimeDisplay) userInfo:nil repeats:YES];
-
-    //[self.mainGraph reloadData];
-//    self.totalCostSum = [self.model totalsArray];
-//    int count = 0;
-//    
-//    for(NSMutableDictionary *dictionary in self.totalCostSum)
-//    {
-//        NSNumber *totalCost = [dictionary objectForKey:@"total"];
-//        [self.pieChart
-//        
-//        count++;
-//    }
-//    [self.pieChart reloadData];
+    if(!self.model.timestopped)
+    {
+        self.model.tripTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60) target:self selector:@selector(updateTimeDisplay) userInfo:nil repeats:YES];
+    }
+    else
+    {
+        self.timerLabel.text = self.model.timeEnded;
+    }
+    [self updateCostLabels];
+    
+    
     
 }
 

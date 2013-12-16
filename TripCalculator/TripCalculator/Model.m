@@ -11,7 +11,9 @@
 @property (strong,retain) NSMutableArray *costInformation;
 @property (strong, retain) NSMutableArray *totalCostsInformation;
 
+
 @end
+
 
 int seconds;
 int minutes;
@@ -38,6 +40,9 @@ int hours;
         // initialization
 //        NSDictionary *newCost = [[NSDictionary alloc] initWithObjectsAndKeys: @"gas", @"cost type", @"20", @"money cost", @"", @"description", @"", @"latitude", @"", @"longitude",  nil];
         self.tripInProgess = NO;
+        self.timestopped = NO;
+        self.timeEnded = @"";
+        self.tripName = @"";
 
         self.costInformation = [[NSMutableArray alloc] init ];//]WithObjects:newCost, nil];
         self.totalCostsInformation = [[NSMutableArray alloc] initWithCapacity:4];
@@ -90,6 +95,10 @@ int hours;
 
 - (void) stopTimer {
     self.end = [NSDate date];
+    //self.start = [NSDate date];
+    [self.tripTimer invalidate];
+    self.tripTimer = nil;
+    self.timestopped = YES;
 }
 
 - (double) timeElapsedInSeconds {
@@ -200,10 +209,35 @@ int hours;
     
 }
 
--(void)lastModifiedCost:(NSString*)costType
+//-(void)lastModifiedCost:(NSString*)costType
+//{
+//    self.costToUpdate = costType;
+//}
+-(NSMutableArray*)currentTotalCostInformation
 {
-    self.costToUpdate = costType;
+    return self.totalCostsInformation;
 }
 
+-(void)setBudgetValue:(NSString*)budget
+{
+     targetBudget = [budget floatValue];
+    
+}
+
+-(float)budgetValue
+{
+    return  targetBudget;
+}
+
+-(void)timeTripEnded:(NSString*)time
+{
+    self.timeEnded = time;
+    
+}
+
+-(void)tripTitle:(NSString*)trip
+{
+    self.tripName = trip;
+}
 
 @end

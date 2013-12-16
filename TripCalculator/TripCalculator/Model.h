@@ -30,11 +30,21 @@
 -(NSMutableArray*)totalsArray;
 -(void)lastModifiedCost:(NSString*)costType;
 @property (strong, nonatomic) NSString *costToUpdate;
+@property BOOL timestopped;
 
 @property(strong, nonatomic)NSMutableArray *gasCostArray;
 @property(strong, nonatomic)NSMutableArray *tollCostArray;
 @property(strong, nonatomic)NSMutableArray *miscCostArray;
 @property(strong, nonatomic)NSMutableArray *foodCostArray;
-
+@property(strong, nonatomic)NSString *timeEnded;
+@property(strong, nonatomic)NSString *tripName;
+-(void)setBudgetValue:(NSString*)budget;
+-(float)budgetValue;
+-(NSMutableArray*)currentTotalCostInformation;
+-(void)timeTripEnded:(NSString*)time;
+-(void)tripTitle:(NSString*)trip;
 
 @end
+
+float targetBudget;
+

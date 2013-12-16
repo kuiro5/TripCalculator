@@ -68,6 +68,8 @@ BOOL allowedToSave = NO;
 {
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
+    
+    
 }
 
 - (void)viewDidLoad
@@ -195,7 +197,6 @@ BOOL allowedToSave = NO;
     NSLog(@"after dictionary");
     
     [self.model addNewCost:newCost];
-    [self.model lastModifiedCost:self.typeOfCostTextField.text];
     
     //[];
     

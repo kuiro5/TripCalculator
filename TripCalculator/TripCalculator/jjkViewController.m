@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *startingTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *budgetTextField;
-@property (weak, nonatomic) IBOutlet UITextField *timeTextField;
 - (IBAction)calculatePressed:(id)sender;
 
 @end
@@ -62,7 +61,6 @@ BOOL canStartTrip = NO;
     self.startingTextField.text = @"";
     self.destinationTextField.text = @"";
     self.budgetTextField.text = @"";
-    self.timeTextField.text = @"";
     
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
@@ -89,22 +87,25 @@ BOOL canStartTrip = NO;
     [self.model clearTrip];
     startTimer = YES;
     self.model.tripInProgess = YES;
-
+    self.model.timestopped = NO;
     
-    if([self.startingTextField.text isEqualToString:@""] || [self.destinationTextField.text isEqualToString:@""] || [self.budgetTextField.text isEqualToString:@""] || [self.timeTextField.text isEqualToString:@""])
+    if([self.startingTextField.text isEqualToString:@""] || [self.destinationTextField.text isEqualToString:@""] || [self.budgetTextField.text isEqualToString:@""])
     {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                          message:@"You must enter a Starting Location, Destination, Target Budget, and Time!"
+                                                          message:@"You must enter a Starting Location, Destination, and Target Budget!"
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
+        
         
         canStartTrip = NO;
     }
     else
     {
         canStartTrip = YES;
+        [self.model setBudgetValue:self.budgetTextField.text];
+        [self.model tripTitle:self.tripNameTextField.text];
     }
 }
 
