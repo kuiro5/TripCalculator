@@ -1,48 +1,45 @@
 //
-//  Model.h
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 12/9/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import <Foundation/Foundation.h>
-//#import <UIKit/UIKit.h>
 
 @interface Model : NSObject
-+(id)sharedInstance;
--(void)addNewCost:(NSDictionary*)newCost;
--(NSMutableArray*)currentCostInformation;
 
-- (void) startTimer;
-- (void) stopTimer;
-- (double) timeElapsedInSeconds;
-- (double) timeElapsedInMinutes;
-- (double) timeElapsedInHours;
++(id)sharedInstance;
+
+-(void)addNewCost:(NSDictionary*)newCost;
+-(void) startTimer;
+-(void)timeTripEnded:(NSString*)time;
+-(void)tripTitle:(NSString*)trip;
+-(void)setBudgetValue:(NSString*)budget;
+-(void)clearTrip;
+-(void) stopTimer;
+
+-(double) timeElapsedInSeconds;
+-(float)budgetValue;
+
+-(NSMutableArray*)totalsArray;
 -(NSString*)timeTraveled;
+-(NSMutableArray*)currentTotalCostInformation;
+-(NSMutableArray*)currentCostInformation;
 
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSDate *end;
 @property (strong, nonatomic) NSString *timeElapsed;
 @property (strong, nonatomic) NSTimer *tripTimer;
-@property BOOL tripInProgess;
--(void)clearTrip;
--(NSMutableArray*)totalsArray;
--(void)lastModifiedCost:(NSString*)costType;
 @property (strong, nonatomic) NSString *costToUpdate;
-@property BOOL timestopped;
+@property (strong, nonatomic)NSMutableArray *gasCostArray;
+@property (strong, nonatomic)NSMutableArray *tollCostArray;
+@property (strong, nonatomic)NSMutableArray *miscCostArray;
+@property (strong, nonatomic)NSMutableArray *foodCostArray;
+@property (strong, nonatomic)NSString *timeEnded;
+@property (strong, nonatomic)NSString *tripName;
 
-@property(strong, nonatomic)NSMutableArray *gasCostArray;
-@property(strong, nonatomic)NSMutableArray *tollCostArray;
-@property(strong, nonatomic)NSMutableArray *miscCostArray;
-@property(strong, nonatomic)NSMutableArray *foodCostArray;
-@property(strong, nonatomic)NSString *timeEnded;
-@property(strong, nonatomic)NSString *tripName;
--(void)setBudgetValue:(NSString*)budget;
--(float)budgetValue;
--(NSMutableArray*)currentTotalCostInformation;
--(void)timeTripEnded:(NSString*)time;
--(void)tripTitle:(NSString*)trip;
+@property BOOL tripInProgess;
+@property BOOL timestopped;
 
 @end
 

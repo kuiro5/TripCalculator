@@ -1,15 +1,17 @@
 //
-//  jjkComprehensiveViewController.h
-//  TripCalculator
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
-//  Created by Joshua Kuiros on 12/14/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 #import "Model.h"
+#import "jjkResultsCell.h"
 
 @interface jjkComprehensiveViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+
 @property (strong,nonatomic) Model *model;
 @property (strong, nonatomic)NSString *costType;
+
 @end

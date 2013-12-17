@@ -1,9 +1,7 @@
 //
-//  jjkCostViewController.h
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 12/9/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import <UIKit/UIKit.h>
@@ -11,9 +9,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
 #import "Model.h"
+#import "jjkMapViewController.h"
+#import "jjkComprehensiveViewController.h"
 
 @interface jjkCostViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate,CLLocationManagerDelegate, UIScrollViewDelegate>
+
 @property (strong,nonatomic) Model *model;
+
 @end
 
 

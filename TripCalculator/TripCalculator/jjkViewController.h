@@ -1,14 +1,16 @@
 //
-//  jjkViewController.h
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 11/12/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import <UIKit/UIKit.h>
 #import "Model.h"
+#import "jjkMapViewController.h"
+#import "jjkGraphViewController.h"
 
 @interface jjkViewController : UIViewController <UIScrollViewDelegate>
+
 @property (strong,nonatomic) Model *model;
+
 @end

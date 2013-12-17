@@ -1,19 +1,21 @@
 //
-//  Model.m
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 12/9/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import "Model.h"
+
+#define NUMBER_OF_COSTS 4
+#define HOUR_CONVERSION 3600
+#define MINUTE_CONVERSION 60
+
 @interface Model ()
+
 @property (strong,retain) NSMutableArray *costInformation;
 @property (strong, retain) NSMutableArray *totalCostsInformation;
 
-
 @end
-
 
 int seconds;
 int minutes;
@@ -31,41 +33,36 @@ int hours;
     return singleton;
 }
 
-// override
+
 -(id) init
 {
     self = [super init];
     if(self)
     {
-        // initialization
-//        NSDictionary *newCost = [[NSDictionary alloc] initWithObjectsAndKeys: @"gas", @"cost type", @"20", @"money cost", @"", @"description", @"", @"latitude", @"", @"longitude",  nil];
         self.tripInProgess = NO;
         self.timestopped = NO;
         self.timeEnded = @"";
         self.tripName = @"";
 
-        self.costInformation = [[NSMutableArray alloc] init ];//]WithObjects:newCost, nil];
-        self.totalCostsInformation = [[NSMutableArray alloc] initWithCapacity:4];
+        self.costInformation = [[NSMutableArray alloc] init ];
+        self.totalCostsInformation = [[NSMutableArray alloc] initWithCapacity:NUMBER_OF_COSTS];
         self.gasCostArray = [[NSMutableArray alloc] init];
         self.tollCostArray = [[NSMutableArray alloc] init];
         self.miscCostArray = [[NSMutableArray alloc] init];
         self.foodCostArray = [[NSMutableArray alloc] init];
-        
     }
+    
     return self;
 }
 
--(NSMutableArray*)currentCostInformation
+-(NSMutableArray*)currentCostInformation            // array with every single cost added
 {
-  
     return _costInformation;
 }
 
 
 -(void)addNewCost:(NSDictionary*)newCost
 {
-   
-    NSLog(@"adding new cost");
     [self.costInformation addObject:newCost];
     
     if([[newCost objectForKey:@"cost type"] isEqualToString:@"Gas"])
@@ -86,37 +83,31 @@ int hours;
     }
 }
 
-
-#pragma mark-timer functions
-- (void) startTimer {
+- (void) startTimer
+{
     
     self.start = [NSDate date];
 }
 
-- (void) stopTimer {
+- (void) stopTimer
+{
     self.end = [NSDate date];
-    //self.start = [NSDate date];
     [self.tripTimer invalidate];
     self.tripTimer = nil;
     self.timestopped = YES;
 }
 
-- (double) timeElapsedInSeconds {
+- (double) timeElapsedInSeconds
+{
     return fabs([self.start timeIntervalSinceNow]);
 }
 
-- (double) timeElapsedInMinutes {
-    return [self timeElapsedInSeconds] / 60.0f;
-}
-- (double) timeElapsedInHours {
-    return [self timeElapsedInMinutes] / 60.0f;
-}
-
--(NSString*)timeTraveled{
-    seconds = fmod([self timeElapsedInSeconds], 60);
+-(NSString*)timeTraveled
+{
+    seconds = fmod([self timeElapsedInSeconds], MINUTE_CONVERSION);
     int tmpseconds = [self timeElapsedInSeconds];
-    int tmphour = tmpseconds / 3600;
-    int tmpminutes = tmpseconds / 60 - tmphour * 60;
+    int tmphour = tmpseconds / HOUR_CONVERSION;
+    int tmpminutes = tmpseconds / MINUTE_CONVERSION - tmphour * MINUTE_CONVERSION;
     minutes = tmpminutes;
     hours = tmphour;
     
@@ -127,7 +118,6 @@ int hours;
 
 -(void)clearTrip
 {
-    NSLog(@"clear trip");
     // clear costs with pins
     self.costInformation = [[NSMutableArray alloc] init ];
     self.gasCostArray = [[NSMutableArray alloc] init];
@@ -142,11 +132,10 @@ int hours;
     
 }
 
--(NSMutableArray*)totalsArray
+-(NSMutableArray*)totalsArray           // update total cost for each type
 {
     NSNumber *initValue = [NSNumber numberWithFloat:0.0];
 
-    
     NSMutableDictionary *foodCost = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Food", @"type", initValue, @"total", nil];
     NSMutableDictionary *gasCost = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Gas", @"type", initValue, @"total", nil];
     NSMutableDictionary *tollCost = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Tolls", @"type", initValue, @"total", nil];
@@ -156,7 +145,7 @@ int hours;
     
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     
-    for(NSDictionary *cost in self.costInformation)
+    for(NSDictionary *cost in self.costInformation)                 //
     {
         NSString *type = [cost objectForKey:@"cost type"];
         
@@ -200,7 +189,7 @@ int hours;
         
     }
     
-    [self.totalCostsInformation setObject:foodCost atIndexedSubscript:0];
+    [self.totalCostsInformation setObject:foodCost atIndexedSubscript:0];               // add all cost dictionaries
     [self.totalCostsInformation setObject:gasCost atIndexedSubscript:1];
     [self.totalCostsInformation setObject:tollCost atIndexedSubscript:2];
     [self.totalCostsInformation setObject:miscCost atIndexedSubscript:3];
@@ -209,11 +198,7 @@ int hours;
     
 }
 
-//-(void)lastModifiedCost:(NSString*)costType
-//{
-//    self.costToUpdate = costType;
-//}
--(NSMutableArray*)currentTotalCostInformation
+-(NSMutableArray*)currentTotalCostInformation           // array with dictionaries for each cost 
 {
     return self.totalCostsInformation;
 }

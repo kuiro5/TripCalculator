@@ -1,9 +1,7 @@
 //
-//  jjkMapViewController.h
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 11/12/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import <UIKit/UIKit.h>
@@ -11,7 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
 #import "Model.h"
-
+#import "jjkResultsTableViewController.h"
 
 @interface jjkMapViewController : UIViewController<MKMapViewDelegate>
 
@@ -19,6 +17,6 @@
 @property(strong,nonatomic)NSString *destination;
 @property(strong,nonatomic)NSString *budget;
 @property (strong,nonatomic) Model *model;
--(void)addCostsToMap;//:(NSDictionary*)costAdded;
+-(void)addCostsToMap;
 
 @end

@@ -1,13 +1,20 @@
 //
-//  jjkMapViewController.m
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 11/12/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import "jjkMapViewController.h"
-#import "jjkResultsTableViewController.h"
+
+#define LONGITUDE_FACTOR 2
+#define DELTA_FACTOR 1.2
+#define LATITUDE 90
+#define LONGITUDE 180
+#define MAX_DISTANCE 99999999999999999
+#define POLY_LINE_WIDTH 5.0
+#define COORDINATE_OFFSET .01
+#define ANNOTATION_OFFSET 5
+#define DEFAULT_REGION 20000
 
 @interface jjkMapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -23,27 +30,51 @@
 
 @implementation jjkMapViewController
 
--(id)initWithCoder:(NSCoder *)aDecoder {
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self)
+    {
         _model = [Model sharedInstance];
     }
     return self;
 }
 
--(void)putObject:(MKMapItem*)mapItem
+- (void)viewDidAppear:(BOOL)animated
 {
-   
-    //NSLog(@"inside put object");
+    [self addCostsToMap];
+}
+
+- (void)viewDidLoad
+{
+    
+    [super viewDidLoad];
+    
+    self.shortestRoute = [[MKRoute alloc] init];
+    self.mapView.delegate = self;
+    self.geocodedAddresses = [[NSMutableArray alloc] init];
+    self.routePoints = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *locations = [[NSMutableArray alloc]initWithObjects:self.starting, self.destination, nil];
+    
+    [self geocodeAddress:locations];
+    
+    [self addCostsToMap];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+-(void)putObject:(MKMapItem*)mapItem            // function created to add mapItem within the geocode block
+{
     [self.geocodedAddresses addObject:mapItem];
 }
 
 -(void)geocodeAddress:(NSMutableArray*)locations
 {
-    
-    
     __block NSInteger i = 0;
-    
     
     for(NSString *address in locations)
     {
@@ -51,37 +82,31 @@
     self.geocoder = [[CLGeocoder alloc] init];
     __block CLLocationCoordinate2D coordinate;
     __block MKMapItem *srcItem;
-   // __block NSMutableArray *geocodedAddresses =[[NSMutableArray alloc]initWithCapacity:4];
     
-    [self.geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+    [self.geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {          // geocoder completion block
         
         if ([placemarks count] > 0)
         {
-            //NSLog(@"inside placemark count");
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             CLLocation *location = placemark.location;
             coordinate = location.coordinate;
             
-            [self.routePoints addObject:location];
+            [self.routePoints addObject:location];                  // add location to array used for scaling the map based on CLLocations
             
             MKPlacemark *srcMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
             srcItem = [[MKMapItem alloc] initWithPlacemark:srcMark];
-            [self putObject:srcItem];
-            //[self.geocodedAddresses addObject:srcItem];
+            [self putObject:srcItem];                               // add geocoded addresses
+         
             i++;
             
             [self updateMapView:coordinate withName:address];
         }
         
-        
-        //NSLog(@"%d",i);
-        
-        if(i == 2)
+        if(i == 2)              // destination and source have been geocoded
         {
             [self scaleMapView:self.routePoints];
             [self calculateDirections:self.geocodedAddresses];
         }
-        
     }];
     
         
@@ -90,12 +115,12 @@
     
 }
 
--(void)scaleMapView:(NSMutableArray*)routePoints
+-(void)scaleMapView:(NSMutableArray*)routePoints            // scales map view based on max longitude/latitude of points
 {
-    CLLocationDegrees maxLat = -90;
-    CLLocationDegrees maxLon = -180;
-    CLLocationDegrees minLat = 90;
-    CLLocationDegrees minLon = 180;
+    CLLocationDegrees minLon = LONGITUDE;
+    CLLocationDegrees maxLon = -LONGITUDE;
+    CLLocationDegrees minLat = LATITUDE;
+    CLLocationDegrees maxLat = -LATITUDE;
     
     for(int i = 0; i < routePoints.count; i++)
     {
@@ -111,53 +136,46 @@
     }
     
     MKCoordinateRegion region;
-    region.center.latitude = (maxLat + minLat) / 2;
-    region.center.longitude = (maxLon + minLon) / 2;
-    region.span.latitudeDelta = (maxLat - minLat) * 1.2;
-    region.span.longitudeDelta = (maxLon - minLon) * 1.2;
+    region.center.latitude = (maxLat + minLat) / LONGITUDE_FACTOR;
+    region.center.longitude = (maxLon + minLon) / LONGITUDE_FACTOR;
+    region.span.latitudeDelta = (maxLat - minLat) * DELTA_FACTOR;
+    region.span.longitudeDelta = (maxLon - minLon) * DELTA_FACTOR;
     
     [self.mapView setRegion:region];
-    
-    
 }
 
 -(void)calculateDirections:(NSMutableArray*)addresses
 {
-    //NSLog(@"getting called");
-    
     MKMapItem *temporary =[addresses objectAtIndex:0];
     
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
     
     request.source = temporary;
-    
     temporary =[addresses objectAtIndex:1];
-    
     request.destination = temporary;
-    
     request.requestsAlternateRoutes = YES;
-    MKDirections *directions =
-    [[MKDirections alloc] initWithRequest:request];
     
-    [directions calculateDirectionsWithCompletionHandler:
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    
+    [directions calculateDirectionsWithCompletionHandler:           // direction request block
      ^(MKDirectionsResponse *response, NSError *error) {
-         if (error) {
-             // Handle Error
-         } else {
+         if (error)
+         {
+         }
+         else
+         {
              [self showRoute:response];
          }
      }];
-    
 }
 
--(void)showRoute:(MKDirectionsResponse *)response
+-(void)showRoute:(MKDirectionsResponse *)response               // draws shortest route to be added to the map
 {
     self.route = response;
     MKRoute *route;
-    long double temporaryPath = 99999999999999999;
+    long double temporaryPath = MAX_DISTANCE;
     
-    
-    for (route in response.routes)
+    for (route in response.routes)                              // finds shortest route
     {
         if(route.distance < temporaryPath)
         {
@@ -167,30 +185,19 @@
     }
     
     [self.mapView addOverlay:self.shortestRoute.polyline level:MKOverlayLevelAboveRoads];
-    
-//    UILabel *distanceLabel = [ [UILabel alloc ] initWithFrame:CGRectMake((self.mapView.bounds.size.width / 3), self.mapView.bounds.origin.y + 20, 150.0, 43.0) ];
-    //[distanceLabel setCenter:self.view.center];
-//    distanceLabel.textColor = [UIColor blackColor];
-//    distanceLabel.backgroundColor = [UIColor clearColor];
-//    distanceLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:(20.0)];
-//    [self.mapView addSubview:distanceLabel];
-//    double convert = shortestRoute.distance;
-//    convert = convert * .000621371;
-//    distanceLabel.text = [NSString stringWithFormat: @"%.02f miles", convert];
-
 
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay        // draws route onto MKMapView
 {
     MKPolylineRenderer *renderer =
     [[MKPolylineRenderer alloc] initWithOverlay:overlay];
     renderer.strokeColor = [UIColor blueColor];
-    renderer.lineWidth = 5.0;
+    renderer.lineWidth = POLY_LINE_WIDTH;
     return renderer;
 }
 
--(void)addCostsToMap//:(NSDictionary*)costAdded
+-(void)addCostsToMap                                            // drop pins for each cost added
 {
     NSMutableArray *currentCosts = [[NSMutableArray alloc] init];
     currentCosts = [self.model currentCostInformation];
@@ -198,42 +205,27 @@
     for(int i = 0; i < [currentCosts count]; i++)
     {
         NSDictionary *costAdded = [currentCosts objectAtIndex:i];
-        CLLocationDegrees latitude = self.mapView.centerCoordinate.latitude;
-        CLLocationDegrees longitude = self.mapView.centerCoordinate.longitude;
+        CLLocationDegrees latitude = self.mapView.centerCoordinate.latitude;            // would add at user's location, weren't able to test in simulator
+        CLLocationDegrees longitude = self.mapView.centerCoordinate.longitude;          // adds in center of map with an offset to simulate location
         
-        latitude = latitude + (i*.01);
-        longitude = longitude + (i*.01);
+        latitude = latitude + (i*COORDINATE_OFFSET);
+        longitude = longitude + (i*COORDINATE_OFFSET);
 
         CLLocationCoordinate2D costCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
         
-        
         NSString *type = [costAdded objectForKey:@"cost type"];
         NSString *cost = [costAdded objectForKey:@"money cost"];
-        
-        //CLLocationCoordinate2D costCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        
         
         MKPointAnnotation *newCostAnnotation = [[MKPointAnnotation alloc] init];
         [newCostAnnotation setCoordinate:costCoordinate];
         [newCostAnnotation setTitle:type];
         [newCostAnnotation setSubtitle:cost];
         
-        
-        
-        
-        
-        
-        
-        
         [self.mapView addAnnotation:newCostAnnotation];
-
-        
-        
     }
-    
 }
 
--(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation           // changes pin colors for each cost type
 {
     MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MyPin"];
     
@@ -257,74 +249,33 @@
         annView.pinColor = MKPinAnnotationColorPurple;
     }
     
-    annView.calloutOffset = CGPointMake(-5, 5);
+    annView.calloutOffset = CGPointMake(-ANNOTATION_OFFSET, ANNOTATION_OFFSET);
     annView.animatesDrop=YES;
+    
     return annView;
-}
-
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"view did appear");
-    [self addCostsToMap];
-}
-
-- (void)viewDidLoad
-{
-    
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    self.shortestRoute = [[MKRoute alloc] init];
-    self.mapView.delegate = self;
-    self.geocodedAddresses = [[NSMutableArray alloc] init];
-    self.routePoints = [[NSMutableArray alloc] init];
-    
-    NSMutableArray *locations = [[NSMutableArray alloc]initWithObjects:self.starting, self.destination, nil];
-    
-    [self geocodeAddress:locations];
-    
-    [self addCostsToMap];
-    
 }
 
 - (void) updateMapView:(CLLocationCoordinate2D)currentCoordinate withName:(NSString*)name
 {
-    
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentCoordinate, 20000, 20000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentCoordinate, DEFAULT_REGION, DEFAULT_REGION);
     [self.mapView setRegion:region];
-    
-    //[self.mapView removeAnnotations:[self.mapView annotations]];
     
     MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
     [startAnnotation setCoordinate:currentCoordinate];
     [startAnnotation setTitle:name];
     MKRoute *temporary = [self.route.routes objectAtIndex:0];
     [startAnnotation setSubtitle:[NSString stringWithFormat:@"%.02f", temporary.expectedTravelTime]];
+    
     [self.mapView addAnnotation:startAnnotation];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //NSLog(@"preparing for segue!");
     if([segue.identifier isEqualToString:@"ResultsTableSegue"])
     {
         jjkResultsTableViewController *resultsTableView = segue.destinationViewController;
         resultsTableView.shortestRoute = self.shortestRoute;
     }
-}
-
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-
 }
 
 @end

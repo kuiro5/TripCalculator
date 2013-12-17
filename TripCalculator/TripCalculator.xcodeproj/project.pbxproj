@@ -33,9 +33,11 @@
 		7B665E9F185C25FC00FFFFF9 /* jjkComprehensiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B665E9E185C25FC00FFFFF9 /* jjkComprehensiveViewController.m */; };
 		7B8D0168184D833200FE2337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B40E0561832CE38008AAAB9 /* Main.storyboard */; };
 		7B8D0169184D86DC00FE2337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0861832DBE4008AAAB9 /* MapKit.framework */; };
+		7B9F3E1F185FE6070051FB4F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E1E185FE6070051FB4F /* icon.png */; };
+		7B9F3E23185FE8120051FB4F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E22185FE8120051FB4F /* splash.png */; };
+		7B9F3E25185FF33D0051FB4F /* splash35.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E24185FF33D0051FB4F /* splash35.png */; };
 		7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C92185636990009C0CD /* jjkCostViewController.m */; };
 		7BAA5C961856539C0009C0CD /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C951856539C0009C0CD /* Model.m */; };
-		7BD49ACE185A76A000337BDD /* jjkCustomSlideSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,12 +165,13 @@
 		7B42B1D018514B6D0037C5FE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		7B665E9D185C25FC00FFFFF9 /* jjkComprehensiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkComprehensiveViewController.h; sourceTree = "<group>"; };
 		7B665E9E185C25FC00FFFFF9 /* jjkComprehensiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkComprehensiveViewController.m; sourceTree = "<group>"; };
+		7B9F3E1E185FE6070051FB4F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7B9F3E22185FE8120051FB4F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		7B9F3E24185FF33D0051FB4F /* splash35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash35.png; sourceTree = "<group>"; };
 		7BAA5C91185636990009C0CD /* jjkCostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCostViewController.h; sourceTree = "<group>"; };
 		7BAA5C92185636990009C0CD /* jjkCostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCostViewController.m; sourceTree = "<group>"; };
 		7BAA5C941856539C0009C0CD /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		7BAA5C951856539C0009C0CD /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		7BD49ACC185A76A000337BDD /* jjkCustomSlideSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCustomSlideSegue.h; sourceTree = "<group>"; };
-		7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCustomSlideSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,9 @@
 		7B40E04B1832CE38008AAAB9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B9F3E24185FF33D0051FB4F /* splash35.png */,
+				7B9F3E22185FE8120051FB4F /* splash.png */,
+				7B9F3E1E185FE6070051FB4F /* icon.png */,
 				7B42B17D1851489A0037C5FE /* CorePlotHeaders */,
 				7B42B1CC1851489B0037C5FE /* libCorePlot-CocoaTouch.a */,
 				7B40E05C1832CE38008AAAB9 /* Images.xcassets */,
@@ -399,8 +405,6 @@
 				7B42B17B185145CA0037C5FE /* jjkGraphViewController.m */,
 				7BAA5C91185636990009C0CD /* jjkCostViewController.h */,
 				7BAA5C92185636990009C0CD /* jjkCostViewController.m */,
-				7BD49ACC185A76A000337BDD /* jjkCustomSlideSegue.h */,
-				7BD49ACD185A76A000337BDD /* jjkCustomSlideSegue.m */,
 				7B665E9D185C25FC00FFFFF9 /* jjkComprehensiveViewController.h */,
 				7B665E9E185C25FC00FFFFF9 /* jjkComprehensiveViewController.m */,
 			);
@@ -485,9 +489,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8D0168184D833200FE2337 /* Main.storyboard in Resources */,
+				7B9F3E1F185FE6070051FB4F /* icon.png in Resources */,
 				7B40E05D1832CE38008AAAB9 /* Images.xcassets in Resources */,
 				7B40E04F1832CE38008AAAB9 /* InfoPlist.strings in Resources */,
+				7B9F3E23185FE8120051FB4F /* splash.png in Resources */,
 				7B40E07F1832D700008AAAB9 /* route.png in Resources */,
+				7B9F3E25185FF33D0051FB4F /* splash35.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +517,6 @@
 				7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */,
 				7B42B1731851293F0037C5FE /* jjkResultsTableViewController.m in Sources */,
 				7BAA5C961856539C0009C0CD /* Model.m in Sources */,
-				7BD49ACE185A76A000337BDD /* jjkCustomSlideSegue.m in Sources */,
 				7B40E07D1832D345008AAAB9 /* jjkMapViewController.m in Sources */,
 				7B40E0551832CE38008AAAB9 /* jjkAppDelegate.m in Sources */,
 				7B42B17C185145CA0037C5FE /* jjkGraphViewController.m in Sources */,
@@ -643,8 +649,6 @@
 		7B40E0741832CE39008AAAB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",
@@ -670,8 +674,6 @@
 		7B40E0751832CE39008AAAB9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",

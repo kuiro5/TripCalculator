@@ -1,20 +1,15 @@
 //
-//  jjkViewController.m
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 11/12/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import "jjkViewController.h"
-#import "jjkMapViewController.h"
-#import "jjkGraphViewController.h"
-
 
 @interface jjkViewController ()
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *tripNameTextField;
-
 @property (weak, nonatomic) IBOutlet UIButton *currentTripButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *startingTextField;
@@ -29,10 +24,11 @@ BOOL canStartTrip = NO;
 @implementation jjkViewController
 
 
-
--(id)initWithCoder:(NSCoder *)aDecoder {
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self)
+    {
         _model = [Model sharedInstance];
     }
     return self;
@@ -40,24 +36,19 @@ BOOL canStartTrip = NO;
 
 - (void)viewDidLoad
 {
-    
-    //NSLog(@"Current identifier: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     self.scrollView.contentSize = self.view.frame.size;
-    
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
     
     self.scrollView.delegate = self;
-    
     self.scrollView.userInteractionEnabled = YES;
     
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.tripNameTextField.text = @"";
+    self.tripNameTextField.text = @"";                  
     self.startingTextField.text = @"";
     self.destinationTextField.text = @"";
     self.budgetTextField.text = @"";
@@ -78,12 +69,10 @@ BOOL canStartTrip = NO;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)calculatePressed:(id)sender
 {
- //   NSLog(@"new trip");
     [self.model clearTrip];
     startTimer = YES;
     self.model.tripInProgess = YES;
@@ -97,7 +86,6 @@ BOOL canStartTrip = NO;
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
         
         canStartTrip = NO;
     }
@@ -128,17 +116,12 @@ BOOL canStartTrip = NO;
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
-   // NSLog(@"inside did begin editing");
     UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 216.0, 0.0);
     self.scrollView.contentInset = insets;
-    
 }
 
 -(void)textFieldDidEndEditing:(UITextField*)textField
 {
-    //UIEdgeInsets insets  = UIEdgeInsetsZero;
-    //self.scrollView.contentInset = insets;
-    
 }
 
 -(BOOL)textFieldShouldReturn: (UITextField*) textField
@@ -148,7 +131,6 @@ BOOL canStartTrip = NO;
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
 
-    
     return YES;
 }
 
@@ -161,7 +143,6 @@ BOOL canStartTrip = NO;
             mapViewController.starting = self.startingTextField.text;
             mapViewController.destination = self.destinationTextField.text;
             mapViewController.budget = self.budgetTextField.text;
-
         }
 }
 @end

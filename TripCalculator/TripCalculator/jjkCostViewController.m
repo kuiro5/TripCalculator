@@ -1,75 +1,45 @@
 //
-//  jjkCostViewController.m
-//  TripCalculator
-//
-//  Created by Joshua Kuiros on 12/9/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Mike Green Josh Kuiros
+// Final Project
+// 12/16/13
 //
 
 #import "jjkCostViewController.h"
-#import "jjkMapViewController.h"
-#import "jjkComprehensiveViewController.h"
 
 @interface jjkCostViewController ()
+
 @property (strong, nonatomic) UIPickerView *costTypePicker;
+@property(strong, nonatomic) jjkMapViewController *mapView;
+@property (strong, nonatomic)NSArray *costTypes;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *currentLocation;
+
 @property (weak, nonatomic) IBOutlet UITextField *typeOfCostTextField;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *costLabel;
 @property (weak, nonatomic) IBOutlet UITextField *latitudeTextField;
-- (IBAction)saveButtonPressed:(id)sender;
-- (IBAction)cancelButtonPressed:(id)sender;
-@property(strong, nonatomic)jjkMapViewController *mapView;
-
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (strong, nonatomic)NSArray *costTypes;
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *currentLocation;
 
-//@property (retain, nonatomic) NSDictionary *newCost;
+- (IBAction)saveButtonPressed:(id)sender;
+- (IBAction)cancelButtonPressed:(id)sender;
+
 @end
 
-BOOL allowedToSave = NO;
+BOOL allowedToSave = NO;                    // checks for appropriate inputs
 
 @implementation jjkCostViewController
 
--(id)initWithCoder:(NSCoder *)aDecoder {
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self)
+    {
         _model = [Model sharedInstance];
         _mapView = [[jjkMapViewController alloc] init];
     }
     return self;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    self.currentLocation = newLocation;
-    
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
-}
-
--(void)locationForCosts
-{
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [self.locationManager startUpdatingLocation];
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    UIEdgeInsets insets  = UIEdgeInsetsZero;
-    self.scrollView.contentInset = insets;
-    
-    
 }
 
 - (void)viewDidLoad
@@ -77,17 +47,14 @@ BOOL allowedToSave = NO;
     [super viewDidLoad];
     
     self.scrollView.contentSize = self.view.frame.size;
-    
     self.scrollView.delegate = self;
-    
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
-
- 
+    
+    
     self.costLabel.text = @"Add New Cost";
     
     self.locationManager = [[CLLocationManager alloc] init];
-    
     self.currentLocation = [[CLLocation alloc] init];
     
     
@@ -104,29 +71,60 @@ BOOL allowedToSave = NO;
     self.costTypes = [[NSArray alloc] initWithObjects:@"", @"Food", @"Gas", @"Tolls", @"Misc", nil];
     
     [self locationForCosts];
-	// Do any additional setup after loading the view.
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+// updates location as user moves, unable to test feature on simulator
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    self.currentLocation = newLocation;
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+-(void)locationForCosts
+{
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [self.locationManager startUpdatingLocation];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView
+{
     
     return 1;//Or return whatever as you intend
 }
 
-- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.costTypes count];//Or, return as suitable for you...normally we use array for dynamic
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.costTypes count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.costTypes objectAtIndex:row];//Or, your suitable title; like Choice-a, etc.
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.costTypes objectAtIndex:row];
 }
 
-- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     
-    //Here, like the table view you can get the each section of each row if you've multiple sections
-    //NSLog(@"Selected Color: %@. Index of selected color: %i", [arrayColors objectAtIndex:row], row);
-    
-    //Now, if you want to navigate then;
-    // Say, OtherViewController is the controller, where you want to navigate:
     self.typeOfCostTextField.text = [self.costTypes objectAtIndex:row];
     [self.typeOfCostTextField resignFirstResponder];
     
@@ -139,13 +137,11 @@ BOOL allowedToSave = NO;
     UIEdgeInsets insets  = UIEdgeInsetsZero;
     self.scrollView.contentInset = insets;
     
-    
     return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField*)textField
 {
-   // NSLog(@"inside did begin editing");
     if(textField.tag != 0 && textField.tag != 3 && textField.tag != 4)
     {
         UIEdgeInsets insets  = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0);
@@ -154,8 +150,6 @@ BOOL allowedToSave = NO;
     
     if(textField.tag == 3 && textField.tag == 4)
     {
-        //UIEdgeInsets insets  = UIEdgeInsetsZero;
-        //self.scrollView.contentInset = insets;
         [textField resignFirstResponder];
     }
 }
@@ -172,35 +166,19 @@ BOOL allowedToSave = NO;
 
 -(void)textFieldDidEndEditing:(UITextField*)textField
 {
-    //if(textField.tag != 0)
-    //{
-        UIEdgeInsets insets  = UIEdgeInsetsZero;
-        self.scrollView.contentInset = insets;
-    //}
-    
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIEdgeInsets insets  = UIEdgeInsetsZero;
+    self.scrollView.contentInset = insets;
 }
 
 - (IBAction)saveButtonPressed:(id)sender
 {
-    NSLog(@"save getting pressed");
     NSNumber *latitude = [NSNumber numberWithDouble:40.798938];
     NSNumber *longitude = [NSNumber numberWithDouble:-77.861298];
     
     NSDictionary *newCost = [[NSDictionary alloc] initWithObjectsAndKeys:self.typeOfCostTextField.text, @"cost type", self.moneyTextField.text, @"money cost", self.descriptionTextField.text, @"description", latitude, @"latitude", longitude, @"longitude",  nil];
-    NSLog(@"after dictionary");
     
     [self.model addNewCost:newCost];
     
-    //[];
-    
-    //[self.mapView addCostsToMap];
     if([self.typeOfCostTextField.text isEqualToString:@""] || [self.moneyTextField.text isEqualToString:@""])
     {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -209,13 +187,10 @@ BOOL allowedToSave = NO;
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
-        //allowedToSave = NO;
     }
     else
     {
         [self.navigationController popViewControllerAnimated:YES];
-        //allowedToSave = YES;
     }
 }
 
@@ -226,13 +201,5 @@ BOOL allowedToSave = NO;
     self.moneyTextField.text = @"";
     self.descriptionTextField.text = @"";
 }
-
-
-
-
-
-
-
-
 
 @end
