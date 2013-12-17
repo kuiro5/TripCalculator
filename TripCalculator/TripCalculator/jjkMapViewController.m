@@ -104,15 +104,12 @@
         
         if(i == 2)              // destination and source have been geocoded
         {
+            
             [self scaleMapView:self.routePoints];
             [self calculateDirections:self.geocodedAddresses];
         }
     }];
-    
-        
     }
-    
-    
 }
 
 -(void)scaleMapView:(NSMutableArray*)routePoints            // scales map view based on max longitude/latitude of points
@@ -121,8 +118,9 @@
     CLLocationDegrees maxLon = -LONGITUDE;
     CLLocationDegrees minLat = LATITUDE;
     CLLocationDegrees maxLat = -LATITUDE;
+    int i;
     
-    for(int i = 0; i < routePoints.count; i++)
+    for(i = 0; i < routePoints.count; i++)
     {
         CLLocation *currentLocation = [self.routePoints objectAtIndex:i];
         if(currentLocation.coordinate.latitude > maxLat)
@@ -169,6 +167,7 @@
      }];
 }
 
+
 -(void)showRoute:(MKDirectionsResponse *)response               // draws shortest route to be added to the map
 {
     self.route = response;
@@ -183,6 +182,7 @@
             self.shortestRoute = route;
         }
     }
+    
     
     [self.mapView addOverlay:self.shortestRoute.polyline level:MKOverlayLevelAboveRoads];
 
@@ -263,8 +263,6 @@
     MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
     [startAnnotation setCoordinate:currentCoordinate];
     [startAnnotation setTitle:name];
-    MKRoute *temporary = [self.route.routes objectAtIndex:0];
-    [startAnnotation setSubtitle:[NSString stringWithFormat:@"%.02f", temporary.expectedTravelTime]];
     
     [self.mapView addAnnotation:startAnnotation];
 }

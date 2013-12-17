@@ -30,12 +30,14 @@
 		7B42B1CD1851489B0037C5FE /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42B1CC1851489B0037C5FE /* libCorePlot-CocoaTouch.a */; };
 		7B42B1CF185149000037C5FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42B1CE185148FF0037C5FE /* QuartzCore.framework */; };
 		7B42B1D118514B6D0037C5FE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42B1D018514B6D0037C5FE /* Accelerate.framework */; };
+		7B4CBE9E185FFB5600860355 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CBE9C185FFB5600860355 /* icon58.png */; };
+		7B4CBE9F185FFB5600860355 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CBE9D185FFB5600860355 /* icon80.png */; };
+		7B4CBEA2185FFD6000860355 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CBEA0185FFD6000860355 /* Default-568h@2x.png */; };
+		7B4CBEA3185FFD6000860355 /* splash35ret.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CBEA1185FFD6000860355 /* splash35ret.png */; };
 		7B665E9F185C25FC00FFFFF9 /* jjkComprehensiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B665E9E185C25FC00FFFFF9 /* jjkComprehensiveViewController.m */; };
 		7B8D0168184D833200FE2337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B40E0561832CE38008AAAB9 /* Main.storyboard */; };
 		7B8D0169184D86DC00FE2337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B40E0861832DBE4008AAAB9 /* MapKit.framework */; };
 		7B9F3E1F185FE6070051FB4F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E1E185FE6070051FB4F /* icon.png */; };
-		7B9F3E23185FE8120051FB4F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E22185FE8120051FB4F /* splash.png */; };
-		7B9F3E25185FF33D0051FB4F /* splash35.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9F3E24185FF33D0051FB4F /* splash35.png */; };
 		7BAA5C93185636990009C0CD /* jjkCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C92185636990009C0CD /* jjkCostViewController.m */; };
 		7BAA5C961856539C0009C0CD /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5C951856539C0009C0CD /* Model.m */; };
 /* End PBXBuildFile section */
@@ -163,11 +165,13 @@
 		7B42B1CC1851489B0037C5FE /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		7B42B1CE185148FF0037C5FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7B42B1D018514B6D0037C5FE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7B4CBE9C185FFB5600860355 /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
+		7B4CBE9D185FFB5600860355 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		7B4CBEA0185FFD6000860355 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7B4CBEA1185FFD6000860355 /* splash35ret.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash35ret.png; sourceTree = "<group>"; };
 		7B665E9D185C25FC00FFFFF9 /* jjkComprehensiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkComprehensiveViewController.h; sourceTree = "<group>"; };
 		7B665E9E185C25FC00FFFFF9 /* jjkComprehensiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkComprehensiveViewController.m; sourceTree = "<group>"; };
 		7B9F3E1E185FE6070051FB4F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		7B9F3E22185FE8120051FB4F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
-		7B9F3E24185FF33D0051FB4F /* splash35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash35.png; sourceTree = "<group>"; };
 		7BAA5C91185636990009C0CD /* jjkCostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkCostViewController.h; sourceTree = "<group>"; };
 		7BAA5C92185636990009C0CD /* jjkCostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkCostViewController.m; sourceTree = "<group>"; };
 		7BAA5C941856539C0009C0CD /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -253,8 +257,10 @@
 		7B40E04B1832CE38008AAAB9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B9F3E24185FF33D0051FB4F /* splash35.png */,
-				7B9F3E22185FE8120051FB4F /* splash.png */,
+				7B4CBEA0185FFD6000860355 /* Default-568h@2x.png */,
+				7B4CBEA1185FFD6000860355 /* splash35ret.png */,
+				7B4CBE9C185FFB5600860355 /* icon58.png */,
+				7B4CBE9D185FFB5600860355 /* icon80.png */,
 				7B9F3E1E185FE6070051FB4F /* icon.png */,
 				7B42B17D1851489A0037C5FE /* CorePlotHeaders */,
 				7B42B1CC1851489B0037C5FE /* libCorePlot-CocoaTouch.a */,
@@ -491,10 +497,12 @@
 				7B8D0168184D833200FE2337 /* Main.storyboard in Resources */,
 				7B9F3E1F185FE6070051FB4F /* icon.png in Resources */,
 				7B40E05D1832CE38008AAAB9 /* Images.xcassets in Resources */,
+				7B4CBEA2185FFD6000860355 /* Default-568h@2x.png in Resources */,
+				7B4CBE9E185FFB5600860355 /* icon58.png in Resources */,
 				7B40E04F1832CE38008AAAB9 /* InfoPlist.strings in Resources */,
-				7B9F3E23185FE8120051FB4F /* splash.png in Resources */,
+				7B4CBE9F185FFB5600860355 /* icon80.png in Resources */,
 				7B40E07F1832D700008AAAB9 /* route.png in Resources */,
-				7B9F3E25185FF33D0051FB4F /* splash35.png in Resources */,
+				7B4CBEA3185FFD6000860355 /* splash35ret.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +657,7 @@
 		7B40E0741832CE39008AAAB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",
@@ -674,6 +683,7 @@
 		7B40E0751832CE39008AAAB9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",
