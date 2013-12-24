@@ -659,17 +659,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/TripCalculator",
 					"$(inherited)",
-					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",
-					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0/GoogleMapsSDKDemos",
-					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCalculator/TripCalculator-Prefix.pch";
 				INFOPLIST_FILE = "TripCalculator/TripCalculator-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
+					"$(SRCROOT)/TripCalculator",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -685,17 +683,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/TripCalculator",
 					"$(inherited)",
-					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0",
-					"/Users/JoshuaKuiros/Downloads/GoogleMaps-iOS-1.5.0/GoogleMapsSDKDemos",
-					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCalculator/TripCalculator-Prefix.pch";
 				INFOPLIST_FILE = "TripCalculator/TripCalculator-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/JoshuaKuiros/Desktop/Repos/TripCalculator/TripCalculator/TripCalculator,
+					"$(SRCROOT)/TripCalculator",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

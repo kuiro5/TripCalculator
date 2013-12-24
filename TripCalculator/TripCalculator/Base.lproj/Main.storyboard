@@ -18,7 +18,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpv-i1-ZCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013" y="-99"/>
+            <point key="canvasLocation" x="-1421" y="-155"/>
         </scene>
         <!--Jjk View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -114,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-480" y="-99"/>
+            <point key="canvasLocation" x="-852" y="-155"/>
         </scene>
         <!--Jjk Map View Controller-->
         <scene sceneID="k7M-Nb-V8c">
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKp-dM-Nat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8" y="-78"/>
+            <point key="canvasLocation" x="-254" y="-122"/>
         </scene>
         <!--Jjk Results Table View Controller-->
         <scene sceneID="boC-mD-vwk">
@@ -210,7 +210,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-Zs-PgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216" y="552"/>
+            <point key="canvasLocation" x="566" y="696"/>
         </scene>
         <!--Jjk Comprehensive View Controller-->
         <scene sceneID="BB5-gi-IGx">
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgo-M5-wej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="684" y="552"/>
+            <point key="canvasLocation" x="1292" y="472"/>
         </scene>
         <!--Jjk Graph View Controller-->
         <scene sceneID="YJx-QJ-ids">
@@ -371,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRn-2n-pzo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973" y="-72"/>
+            <point key="canvasLocation" x="425" y="-276"/>
         </scene>
         <!--Jjk Cost View Controller-->
         <scene sceneID="864-W8-wL1">
@@ -479,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wiN-F2-UFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="-78"/>
+            <point key="canvasLocation" x="940" y="-242"/>
         </scene>
     </scenes>
     <resources>
@@ -492,7 +492,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RN3-yc-oFY"/>
+        <segue reference="qOu-Gm-W17"/>
         <segue reference="Yia-pp-VLn"/>
     </inferredMetricsTieBreakers>
 </document>
